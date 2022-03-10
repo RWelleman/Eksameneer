@@ -7,7 +7,11 @@ public class Main {
     public static void main(String[] args) {
         // write your code here
         Scanner scanner = new Scanner(System.in);
-        String input = scanner.nextLine();
-        System.out.println("gebruiker heeft dit ingevoerd: " + input);
+        System.out.println("Menu");
+        System.out.println("1) Lijst van examens");
+        System.out.println("2) Lijst met studenten");
+
+        int gekozen = scanner.nextInt();
+        System.out.println("gebruiker heeft voor optie " + gekozen + " gekozen");
     }
 }
