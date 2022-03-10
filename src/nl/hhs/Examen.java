@@ -14,7 +14,7 @@ public class Examen {
     }
 
     public Resultaat neemAf(Student student){
-        Resultaat resultaat = new Resultaat();
+        Resultaat resultaat = new Resultaat(student, this, 5.0);
         return resultaat;
     }
 }

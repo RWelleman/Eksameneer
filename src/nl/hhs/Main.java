@@ -1,5 +1,6 @@
 package nl.hhs;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -8,6 +9,7 @@ public class Main {
         // write your code here //
         Scanner scanner = new Scanner(System.in);
 
-        // Examen nieuweExamen = new Examen();
+        //Examen nieuweExamen = new Examen();
+
     }
 }
