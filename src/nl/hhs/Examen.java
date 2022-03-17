@@ -3,14 +3,23 @@ package nl.hhs;
 import java.util.ArrayList;
 
 public class Examen {
-    public ArrayList<Vraag> vragen;
-    public ArrayList<Student> studenten;
-    public Vak vak;
+    private String examenCode;
+    private ArrayList<Vraag> vragen;
+    private ArrayList<Resultaat> resultaten;
+    private static ArrayList<Examen> alleExamen;
 
-    public Examen(ArrayList<Vraag> vragen, ArrayList<Student> studenten, Vak vak) {
+    public Examen(ArrayList<Vraag> vragen, String examenCode) {
         this.vragen = vragen;
-        this.studenten = studenten;
-        this.vak = vak;
+        this.examenCode = examenCode;
+        alleExamen.add(this);
+    }
+
+    public void maakVraag(Vraag vraag){
+
+    }
+
+    public void verwijderVraag(Vraag vraag){
+
     }
 
     public Resultaat neemAf(Student student){

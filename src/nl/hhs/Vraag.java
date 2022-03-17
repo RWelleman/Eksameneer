@@ -1,5 +1,5 @@
 package nl.hhs;
 
-public class Vraag {
-
+public abstract class Vraag {
+    
 }
