@@ -27,3 +27,5 @@ public class Examen {
         return resultaat;
     }
 }
+
+// test
