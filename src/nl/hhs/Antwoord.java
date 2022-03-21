@@ -1,20 +1,19 @@
 package nl.hhs;
 
 public class Antwoord {
-    private String inhoud;
+    private String input;
     private boolean isGoed;
 
-    public Antwoord(String inhoud, boolean isGoed) {
-        this.inhoud = inhoud;
-        this.isGoed = isGoed;
+    public Antwoord(String input) {
+        this.input = input;
     }
 
-    public String getInhoud() {
-        return inhoud;
+    public String getInput() {
+        return input;
     }
 
-    public void setInhoud(String inhoud) {
-        this.inhoud = inhoud;
+    public void setInput(String input) {
+        this.input = input;
     }
 
     public boolean isGoed() {
