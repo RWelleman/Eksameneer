@@ -2,21 +2,25 @@ package nl.hhs;
 
 public abstract class Vraag {
     private String inhoud;
-    private String correcteAnwoord;
+    private String correcteAntwoord;
     private Antwoord antwoord;
+    private Examen examen;
 
-    public Vraag(String inhoud, String correcteAnwoord, Antwoord antwooord) {
+    public Vraag(Examen examen, String inhoud, String correcteAnwoord, Antwoord antwoord) {
         this.inhoud = inhoud;
-        this.correcteAnwoord = correcteAnwoord;
-        this.antwoord = antwooord;
+        this.correcteAntwoord = correcteAnwoord;
+        this.antwoord = antwoord;
+        this.examen = examen;
     }
 
     public Antwoord controleer() {
         // goed = true; fout = false
         // pak this.correcteAntwoord & vergelijk dit met this.antwoord.getInput()
-        // Als het klopt zet this.antwoord.setGoed()
+        // Doe daarna antwoord.setGoed(x) met x als true/false wanneer het klopt/niet klopt
         // Deze functie kan overwritten worden bij subclasses
         // return this.antwoord
+        boolean goed = this.correcteAntwoord.equals(this.antwoord.getInput());
+        this.antwoord.setGoed(goed);
 
         return this.antwoord;
     }
@@ -29,19 +33,27 @@ public abstract class Vraag {
         this.inhoud = inhoud;
     }
 
-    public String getCorrecteAnwoord() {
-        return correcteAnwoord;
+    public String getCorrecteAntwoord() {
+        return correcteAntwoord;
     }
 
-    public void setCorrecteAnwoord(String correcteAnwoord) {
-        this.correcteAnwoord = correcteAnwoord;
+    public void setCorrecteAntwoord(String correcteAntwoord) {
+        this.correcteAntwoord = correcteAntwoord;
     }
 
-    public Antwoord getAntwooord() {
+    public Antwoord getAntwoord() {
         return antwoord;
     }
 
-    public void setAntwooord(Antwoord antwooord) {
-        this.antwoord = antwooord;
+    public void setAntwoord(Antwoord antwoord) {
+        this.antwoord = antwoord;
+    }
+
+    public Examen getExamen() {
+        return examen;
+    }
+
+    public void setExamen(Examen examen) {
+        this.examen = examen;
     }
 }
