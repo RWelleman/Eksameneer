@@ -11,6 +11,7 @@ public abstract class Vraag {
         this.correcteAntwoord = correcteAnwoord;
         this.antwoord = antwoord;
         this.examen = examen;
+
     }
 
     public Antwoord controleer() {

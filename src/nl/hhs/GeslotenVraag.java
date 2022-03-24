@@ -4,8 +4,8 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class GeslotenVraag extends Vraag {
-    public GeslotenVraag(Examen examen, String inhoud, String correcteAnwoord, Antwoord antwoord) {
-        super(examen, inhoud, correcteAnwoord, antwoord);
+    public GeslotenVraag(Examen examen, String inhoud, String correcteAnwoord) {
+        super(examen, inhoud, correcteAnwoord, null);
     }
 
     public ArrayList<String> getAntwoorden(){
