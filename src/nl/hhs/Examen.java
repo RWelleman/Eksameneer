@@ -6,7 +6,7 @@ public class Examen {
     private String examenCode;
     private ArrayList<Vraag> vragen;
     private ArrayList<Resultaat> resultaten;
-    private static ArrayList<Examen> alleExamen;
+    private static ArrayList<Examen> alleExamen = new ArrayList<>();
 
     public Examen(ArrayList<Vraag> vragen, String examenCode) {
         this.vragen = vragen;
@@ -23,6 +23,7 @@ public class Examen {
     }
 
     public Resultaat neemAf(Student student){
+
         Resultaat resultaat = new Resultaat(student, this, 5.0);
         return resultaat;
     }

@@ -3,16 +3,16 @@ package nl.hhs;
 import java.util.ArrayList;
 
 public class MeerkeuzeVraag extends Vraag {
-    private ArrayList<Antwoord> antwoorden;
+    private ArrayList<String> antwoorden;
 
-    public MeerkeuzeVraag(Examen examen, String inhoud, String correcteAnwoord, ArrayList<Antwoord> antwoorden) {
-        super(examen, inhoud, correcteAnwoord, null);
+    public MeerkeuzeVraag(String inhoud, String correcteAnwoord, ArrayList<String> antwoorden) {
+        super(inhoud, correcteAnwoord);
         // Moet de laatste parameter null zijn als ik arraylist wil ipv antwoord?
 
         this.antwoorden = antwoorden;
     }
 
-    public ArrayList<Antwoord> getAntwoorden() {
+    public ArrayList<String> getAntwoorden() {
         return antwoorden;
     }
 }
