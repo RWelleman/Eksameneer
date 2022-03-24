@@ -23,6 +23,11 @@ public class Student {
     }
 
     public ArrayList<Resultaat> getBehaaldeExamens() {
+
+        if (behaaldeExamens == null) {
+            System.out.println(getStudentNummer() + " Heeft nog geen examens gehaald.");
+        }
+
         return behaaldeExamens;
     }
 }
