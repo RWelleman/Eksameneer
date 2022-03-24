@@ -1,4 +1,4 @@
-package nl.hhs;
+package nl.hhs.examen;
 
 public class ExamenTest {
 }

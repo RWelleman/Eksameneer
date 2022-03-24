@@ -1,4 +1,4 @@
-package nl.hhs;
+package nl.hhs.antwoord;
 
 public class AntwoordTest {
 }
