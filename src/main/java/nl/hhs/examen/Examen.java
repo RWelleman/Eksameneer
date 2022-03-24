@@ -1,4 +1,8 @@
-package nl.hhs;
+package nl.hhs.examen;
+
+import nl.hhs.resultaat.Resultaat;
+import nl.hhs.student.Student;
+import nl.hhs.vraag.Vraag;
 
 import java.util.ArrayList;
 

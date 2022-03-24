@@ -1,4 +1,6 @@
-package nl.hhs;
+package nl.hhs.student;
+
+import nl.hhs.resultaat.Resultaat;
 
 import java.util.ArrayList;
 
