@@ -6,10 +6,12 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        // write your code here //
+
         Scanner scanner = new Scanner(System.in);
-        int keuze= -1;
-        while (keuze!=0) {
+
+        int keuze = -1;
+
+        while (keuze != 0) {
             System.out.println("Menu");
             System.out.println("(1) Lijst met examens.");
             System.out.println("(2) Lijst met studenten.");
@@ -21,7 +23,9 @@ public class Main {
             System.out.println("(8) Welke student heeft de meeste examens gehaald?");
             System.out.println("(0) Exit.");
             System.out.print("Uw keuze:");
+
             keuze = scanner.nextInt();
+
             switch (keuze) {
                 case 1 -> System.out.println("nummer 1 is gekozen");
                 case 2 -> System.out.println("nummer 2 is gekozen");
