@@ -1,5 +1,6 @@
 package nl.hhs;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class GeslotenVraag extends Vraag {
@@ -8,7 +9,9 @@ public class GeslotenVraag extends Vraag {
     }
 
     public ArrayList<String> getAntwoorden(){
-        // gesloten vraag is toch ja/nee vraag?
-        return new ArrayList<String>();
+        ArrayList<String> antwoorden = null;
+        antwoorden.add("ja");
+        antwoorden.add("nee");
+        return antwoorden;
     }
 }
