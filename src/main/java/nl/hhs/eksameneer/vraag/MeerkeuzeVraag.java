@@ -1,8 +1,5 @@
 package nl.hhs.eksameneer.vraag;
 
-import nl.hhs.eksameneer.antwoord.Antwoord;
-import nl.hhs.eksameneer.examen.Examen;
-
 import java.util.ArrayList;
 
 public class MeerkeuzeVraag extends Vraag {

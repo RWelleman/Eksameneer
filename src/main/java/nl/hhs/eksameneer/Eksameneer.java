@@ -1,17 +1,27 @@
 package nl.hhs.eksameneer;
 
+import nl.hhs.eksameneer.examen.Examen;
+import nl.hhs.eksameneer.resultaat.Resultaat;
+import nl.hhs.eksameneer.student.Student;
+import nl.hhs.eksameneer.vraag.GeslotenVraag;
+import nl.hhs.eksameneer.vraag.Vraag;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Eksameneer {
+    static Student student = null;
+    static Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
-        static Student student = null;
-        static Scanner scanner = new Scanner(System.in);
 
-        int keuze = -1;
+        registerExamens();
 
-        while (keuze != 0) {
+        int keuze;
+
+        while (true) {
             System.out.println("Menu");
             System.out.println("(1) Lijst met examens.");
             System.out.println("(2) Lijst met studenten.");
@@ -24,6 +34,7 @@ public class Eksameneer {
             System.out.println("(0) Exit.");
             System.out.print("Uw keuze:");
             keuze = scanner.nextInt();
+
             switch (keuze) {
                 case 1 -> System.out.println("nummer 1 is gekozen");
                 case 2 -> System.out.println("nummer 2 is gekozen");
@@ -51,14 +62,6 @@ public class Eksameneer {
 
     }
 
-
-        registerExamens();
-
-        // write your code here //
-        int keuze= -1;
-        while (keuze!=0) {
-            System.out.print("Uw keuze:");
-            System.out.println();
     private static void registerExamens() {
         // De vragen moeten aangemaakt worden
         ArrayList<Vraag> vragen = new ArrayList<>();

@@ -1,5 +1,6 @@
 package nl.hhs.eksameneer.examen;
 
+import nl.hhs.eksameneer.antwoord.Antwoord;
 import nl.hhs.eksameneer.resultaat.Resultaat;
 import nl.hhs.eksameneer.student.Student;
 import nl.hhs.eksameneer.vraag.Vraag;
@@ -8,8 +9,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Examen {
-    private String examenCode;
-    private ArrayList<Vraag> vragen;
+    private final String examenCode;
+    private final ArrayList<Vraag> vragen;
     private ArrayList<Resultaat> resultaten;
     public static ArrayList<Examen> alleExamen = new ArrayList<>();
 
@@ -19,15 +20,7 @@ public class Examen {
         alleExamen.add(this);
     }
 
-    public void maakVraag(Vraag vraag){
-
-    }
-
-    public void verwijderVraag(Vraag vraag){
-
-    }
-
-    public Resultaat neemAf(Student student){
+    public Resultaat neemAf(Student student) {
         Scanner scanner = new Scanner(System.in);
 
         for (Vraag vraag : vragen) {
@@ -47,9 +40,6 @@ public class Examen {
                 correct += antwoord.isGoed() ? 1 : 0;
             }
             cijfer = correct / vragen.size() * 9 + 1;
-            System.out.println(vragen.size());
-            System.out.println(correct);
-            System.out.println(cijfer);
         }
 
         return new Resultaat(student, this, cijfer);
