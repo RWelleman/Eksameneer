@@ -24,7 +24,7 @@ public class Eksameneer {
         while(gekozen != 0){
             switch(gekozen) {
                 case 1:
-                    ArrayList<Examen> alleExamen = Examen.getAlleExamen();
+                    ArrayList<Examen> alleExamen = Examen.alleExamen;
                     System.out.println("== Selecteer een examen ==");
                     for(int i = 0; i< alleExamen.size(); i++){
                         System.out.println(i+1 + ") " + alleExamen.get(i).getExamenCode());
