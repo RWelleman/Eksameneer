@@ -1,14 +1,24 @@
 package nl.hhs.eksameneer;
 
+import nl.hhs.eksameneer.examen.Examen;
+import nl.hhs.eksameneer.vraag.GeslotenVraag;
+
+import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Eksameneer {
+    public static void toonMenu(){
+        System.out.println("== Menu ==");
+        System.out.println("1) Selecteer een examen");
+        System.out.println("0) Exit");
+        System.out.println("====");
+    }
 
     public static void main(String[] args) {
-
+        // write your code here //
         Scanner scanner = new Scanner(System.in);
 
-        int keuze = -1;
 
         while (keuze != 0) {
             System.out.println("Menu");
