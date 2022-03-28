@@ -3,12 +3,25 @@ package nl.hhs;
 import java.util.ArrayList;
 
 public class GeslotenVraag extends Vraag {
-    private ArrayList<String> antwoorden = new ArrayList<>();
+    private final ArrayList<String> antwoorden = new ArrayList<>();
 
     public GeslotenVraag(String inhoud, String correcteAnwoord) {
         super(inhoud, correcteAnwoord);
         this.antwoorden.add("Ja");
         this.antwoorden.add("Nee");
+    }
+
+    @Override
+    public String getInhoud() {
+        StringBuilder inhoudString = new StringBuilder();
+        inhoudString.append(this.inhoud).append("\n");
+
+        for(String antwoord : antwoorden) {
+            inhoudString.append(antwoord);
+            if(antwoord.equals("Ja")) inhoudString.append("\n");
+        }
+
+        return inhoudString.toString();
     }
 
     public ArrayList<String> getAntwoorden(){

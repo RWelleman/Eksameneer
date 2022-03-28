@@ -1,9 +1,9 @@
 package nl.hhs;
 
 public abstract class Vraag {
-    private String inhoud;
-    private String correcteAntwoord;
-    private Antwoord antwoord;
+    protected String inhoud;
+    protected String correcteAntwoord;
+    protected Antwoord antwoord;
 
     public Vraag(String inhoud, String correcteAnwoord) {
         this.inhoud = inhoud;
