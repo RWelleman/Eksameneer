@@ -15,7 +15,15 @@ public class Examen {
     public Examen(ArrayList<Vraag> vragen, String examenCode) {
         this.vragen = vragen;
         this.examenCode = examenCode;
-        alleExamen.add(this);
+//        alleExamen.add(this);
+    }
+
+    public static ArrayList<Examen> getAlleExamen() {
+        return alleExamen;
+    }
+
+    public static void setAlleExamen(ArrayList<Examen> alleExamen) {
+        Examen.alleExamen = alleExamen;
     }
 
     public void maakVraag(Vraag vraag){

@@ -30,4 +30,9 @@ public class Student {
 
         return behaaldeExamens;
     }
+
+    public void setBehaaldeExamens(ArrayList<Resultaat> behaaldeExamens) {
+        this.behaaldeExamens = behaaldeExamens;
+
+    }
 }
