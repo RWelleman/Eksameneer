@@ -1,4 +1,7 @@
-package nl.hhs;
+package nl.hhs.eksameneer.vraag;
+
+import nl.hhs.eksameneer.antwoord.Antwoord;
+import nl.hhs.eksameneer.examen.Examen;
 
 public abstract class Vraag {
     private String inhoud;

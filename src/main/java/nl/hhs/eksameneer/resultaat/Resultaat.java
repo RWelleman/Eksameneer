@@ -1,4 +1,7 @@
-package nl.hhs;
+package nl.hhs.eksameneer.resultaat;
+
+import nl.hhs.eksameneer.student.Student;
+import nl.hhs.eksameneer.examen.Examen;
 
 public class Resultaat {
     private Student student;
