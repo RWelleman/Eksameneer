@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Created by https://www.toptal.com/developers/gitignore/api/intellij,java
 # Edit at https://www.toptal.com/developers/gitignore?templates=intellij,java
 
@@ -138,3 +139,41 @@ replay_pid*
 
 # End of https://www.toptal.com/developers/gitignore/api/intellij,java
 out/production/OOP1/nl/hhs/Main.class
+=======
+target/
+.DS_Store
+!.mvn/wrapper/maven-wrapper.jar
+.java-version
+/out
+
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+/bin
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+### Docker Postgres Logs ###
+docker-std-err.log
+docker-std-out.log
+
+.ideaDataSources/
+dataSources/
+>>>>>>> origin/master

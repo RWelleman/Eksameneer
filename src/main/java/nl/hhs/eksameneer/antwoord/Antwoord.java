@@ -1,4 +1,4 @@
-package nl.hhs;
+package nl.hhs.eksameneer.antwoord;
 
 public class Antwoord {
     private String input;
