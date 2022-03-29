@@ -32,6 +32,9 @@ public class Examen {
 
     }
 
+    public ArrayList<Vraag> getVragen(){
+        return this.vragen;
+    }
 
     public Resultaat neemAf(Student student){
         Resultaat resultaat = new Resultaat(student, this, 5.0);
