@@ -2,6 +2,7 @@ package nl.hhs.eksameneer;
 
 import nl.hhs.eksameneer.examen.Examen;
 import nl.hhs.eksameneer.vraag.GeslotenVraag;
+import nl.hhs.eksameneer.vraag.Vraag;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -26,7 +27,7 @@ public class Eksameneer {
                 case 1:
                     ArrayList<Examen> alleExamen = Examen.alleExamen;
                     System.out.println("== Selecteer een examen ==");
-                    for(int i = 0; i< alleExamen.size(); i++){
+                    for(int i = 0; i < alleExamen.size(); i++){
                         System.out.println(i+1 + ") " + alleExamen.get(i).getExamenCode());
                     }
                     System.out.println("0) Terug naar menu");
@@ -35,6 +36,14 @@ public class Eksameneer {
                     int examenOptie = scanner.nextInt();
                     if(examenOptie == 0){
                         break;
+                    }else {
+                        Examen gekozenExamen = alleExamen.get(examenOptie+1);
+                        ArrayList<Vraag> vragen = gekozenExamen.getVragen();
+                        System.out.println("== Vragen van Examen: " + gekozenExamen.getExamenCode() + " ==");
+
+                        for (int j = 0; j < vragen.size() ; j++){
+                            System.out.println(j + ". " + vragen.get(j).getInhoud());
+                        }
                     }
 
                     break;
