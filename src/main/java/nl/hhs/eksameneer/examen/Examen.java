@@ -48,6 +48,14 @@ public class Examen {
 
         return new Resultaat(student, this, cijfer);
     }
+
+    public String getExamenCode() {
+        return examenCode;
+    }
+
+    public void setExamenCode(String examenCode) {
+        this.examenCode = examenCode;
+    }
 }
 
 // test

@@ -1,5 +1,4 @@
 package nl.hhs.eksameneer.vraag;
-
 import java.util.ArrayList;
 
 public class GeslotenVraag extends Vraag {
