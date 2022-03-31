@@ -33,7 +33,7 @@ public class Examen {
     }
 
     public ArrayList<Vraag> getVragen(){
-        return this.vragen;
+        return vragen;
     }
 
     public Resultaat neemAf(Student student){

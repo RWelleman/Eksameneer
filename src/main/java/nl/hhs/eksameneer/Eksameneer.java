@@ -37,7 +37,7 @@ public class Eksameneer {
                     if(examenOptie == 0){
                         break;
                     }else {
-                        Examen gekozenExamen = alleExamen.get(examenOptie+1);
+                        Examen gekozenExamen = alleExamen.get(examenOptie-1);
                         ArrayList<Vraag> vragen = gekozenExamen.getVragen();
                         System.out.println("== Vragen van Examen: " + gekozenExamen.getExamenCode() + " ==");
 
