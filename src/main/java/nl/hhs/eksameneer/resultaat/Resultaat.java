@@ -1,9 +1,10 @@
 package nl.hhs.eksameneer.resultaat;
 
+import nl.hhs.eksameneer.JsonStorable;
 import nl.hhs.eksameneer.student.Student;
 import nl.hhs.eksameneer.examen.Examen;
 
-public class Resultaat {
+public class Resultaat implements JsonStorable {
     private Student student;
     private Examen examen;
     private Double cijfer;
@@ -37,4 +38,5 @@ public class Resultaat {
     public void setCijfer(Double cijfer) {
         this.cijfer = cijfer;
     }
+
 }
