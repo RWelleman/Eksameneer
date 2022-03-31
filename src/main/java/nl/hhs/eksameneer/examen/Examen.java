@@ -20,6 +20,10 @@ public class Examen {
         alleExamen.add(this);
     }
 
+    public ArrayList<Vraag> getVragen() {
+        return vragen;
+    }
+
     public Resultaat neemAf(Student student) {
         Scanner scanner = new Scanner(System.in);
 
