@@ -1,20 +1,30 @@
 package nl.hhs.eksameneer.vraag;
-
-import nl.hhs.eksameneer.antwoord.Antwoord;
-import nl.hhs.eksameneer.examen.Examen;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class GeslotenVraag extends Vraag {
-    public GeslotenVraag(Examen examen, String inhoud, String correcteAnwoord) {
-        super(examen, inhoud, correcteAnwoord, null);
+    private final ArrayList<String> antwoorden = new ArrayList<>();
+
+    public GeslotenVraag(String inhoud, String correcteAnwoord) {
+        super(inhoud, correcteAnwoord);
+        this.antwoorden.add("Ja");
+        this.antwoorden.add("Nee");
+    }
+
+    @Override
+    public String getInhoud() {
+        StringBuilder inhoudString = new StringBuilder();
+        inhoudString.append(this.inhoud).append("\n");
+
+        for(String antwoord : antwoorden) {
+            inhoudString.append(antwoord);
+            if(antwoord.equals("Ja")) inhoudString.append("\n");
+        }
+
+        return inhoudString.toString();
     }
 
     public ArrayList<String> getAntwoorden(){
-        ArrayList<String> antwoorden = null;
-        antwoorden.add("ja");
-        antwoorden.add("nee");
-        return antwoorden;
+        // gesloten vraag is toch ja/nee vraag?
+        return this.antwoorden;
     }
 }

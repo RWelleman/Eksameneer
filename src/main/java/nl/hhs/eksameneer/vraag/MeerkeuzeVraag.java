@@ -1,21 +1,31 @@
 package nl.hhs.eksameneer.vraag;
 
-import nl.hhs.eksameneer.antwoord.Antwoord;
-import nl.hhs.eksameneer.examen.Examen;
-
 import java.util.ArrayList;
 
 public class MeerkeuzeVraag extends Vraag {
-    private ArrayList<Antwoord> antwoorden;
+    private final ArrayList<String> antwoorden;
 
-    public MeerkeuzeVraag(Examen examen, String inhoud, String correcteAnwoord, ArrayList<Antwoord> antwoorden) {
-        super(examen, inhoud, correcteAnwoord, null);
+    public MeerkeuzeVraag(String inhoud, String correcteAnwoord, ArrayList<String> antwoorden) {
+        super(inhoud, correcteAnwoord);
         // Moet de laatste parameter null zijn als ik arraylist wil ipv antwoord?
 
         this.antwoorden = antwoorden;
     }
 
-    public ArrayList<Antwoord> getAntwoorden() {
+    @Override
+    public String getInhoud() {
+        StringBuilder inhoudString = new StringBuilder();
+        inhoudString.append(this.inhoud).append("\n");
+
+        for(int i = 0; i < antwoorden.size()-1; i++) {
+            inhoudString.append(i+1).append(". ").append(antwoorden.get(i));
+            if(i != antwoorden.size()-1) inhoudString.append("\n");
+        }
+
+        return inhoudString.toString();
+    }
+
+    public ArrayList<String> getAntwoorden() {
         return antwoorden;
     }
 }

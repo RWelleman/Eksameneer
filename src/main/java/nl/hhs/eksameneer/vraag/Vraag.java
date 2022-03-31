@@ -4,17 +4,13 @@ import nl.hhs.eksameneer.antwoord.Antwoord;
 import nl.hhs.eksameneer.examen.Examen;
 
 public abstract class Vraag {
-    private String inhoud;
-    private String correcteAntwoord;
-    private Antwoord antwoord;
-    private Examen examen;
+    protected String inhoud;
+    protected String correcteAntwoord;
+    protected Antwoord antwoord;
 
-    public Vraag(Examen examen, String inhoud, String correcteAnwoord, Antwoord antwoord) {
+    public Vraag(String inhoud, String correcteAnwoord) {
         this.inhoud = inhoud;
         this.correcteAntwoord = correcteAnwoord;
-        this.antwoord = antwoord;
-        this.examen = examen;
-
     }
 
     public Antwoord controleer() {
@@ -51,13 +47,5 @@ public abstract class Vraag {
 
     public void setAntwoord(Antwoord antwoord) {
         this.antwoord = antwoord;
-    }
-
-    public Examen getExamen() {
-        return examen;
-    }
-
-    public void setExamen(Examen examen) {
-        this.examen = examen;
     }
 }

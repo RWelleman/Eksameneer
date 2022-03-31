@@ -1,31 +1,42 @@
 package nl.hhs.eksameneer;
 
 import nl.hhs.eksameneer.examen.Examen;
+import nl.hhs.eksameneer.resultaat.Resultaat;
+import nl.hhs.eksameneer.student.Student;
 import nl.hhs.eksameneer.vraag.GeslotenVraag;
 import nl.hhs.eksameneer.vraag.Vraag;
-
 import java.util.ArrayList;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class Eksameneer {
-    public static void toonMenu(){
-        System.out.println("== Menu ==");
-        System.out.println("1) Selecteer een examen");
-        System.out.println("0) Exit");
-        System.out.println("====");
-    }
+    static Student student = null;
+    static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
         // write your code here //
         Scanner scanner = new Scanner(System.in);
 
-        toonMenu();
-        int gekozen = scanner.nextInt();
-        while(gekozen != 0){
-            switch(gekozen) {
-                case 1:
-                    ArrayList<Examen> alleExamen = Examen.alleExamen;
+        registerExamens();
+
+        int keuze;
+
+        while (true) {
+            System.out.println("Menu");
+            System.out.println("(1) Lijst met examens.");
+            System.out.println("(2) Lijst met studenten.");
+            System.out.println("(3) Nieuwe student inschrijven.");
+            System.out.println("(4) Student verwijderen.");
+            System.out.println("(5) Examen afnemen.");
+            System.out.println("(6) Is student geslaagd voor test?");
+            System.out.println("(7) Welke examens heeft student gehaald?");
+            System.out.println("(8) Welke student heeft de meeste examens gehaald?");
+            System.out.println("(0) Exit.");
+            System.out.print("Uw keuze:");
+            keuze = scanner.nextInt();
+
+            switch (keuze) {
+                case 1 -> {
+                  ArrayList<Examen> alleExamen = Examen.alleExamen;
                     System.out.println("== Selecteer een examen ==");
                     for(int i = 0; i < alleExamen.size(); i++){
                         System.out.println(i+1 + ") " + alleExamen.get(i).getExamenCode());
@@ -47,10 +58,51 @@ public class Eksameneer {
                     }
 
                     break;
+                }
+                case 2 -> System.out.println("nummer 2 is gekozen");
+                case 3 -> loginStudent();
+                case 4 -> System.out.println("nummer 4 is gekozen");
+                case 5 -> {
+                    if(isLoggedIn(student)) {
+                        System.out.println("Welk examen wil je afnemen? (getal)");
+                        int selectedExam = scanner.nextInt();
+                        Resultaat resultaat = Examen.alleExamen.get(selectedExam - 1).neemAf(student);
+                        System.out.println(resultaat.getCijfer());
+                    } else {
+                        loginStudent();
+                    }
+                }
+                case 6 -> System.out.println("nummer 6 is gekozen");
+                case 7 -> System.out.println("nummer 7 is gekozen");
+                case 8 -> System.out.println("nummer 8 is gekozen");
+                case 0 -> {
+                    System.out.println("exit");
+                    System.exit(0);
+                }
             }
-            toonMenu();
-            gekozen = scanner.nextInt();
-        };
-        //Examen nieuweExamen = new Examen();
+        }
+
+    }
+
+    private static void registerExamens() {
+        // De vragen moeten aangemaakt worden
+        ArrayList<Vraag> vragen = new ArrayList<>();
+        vragen.add(new GeslotenVraag("Werkt dit examen?", "Nee"));
+        // Examen aangemaakt worden
+        new Examen(vragen, "Werkend examen");
+    }
+
+    static boolean isLoggedIn(Student student) {
+        return student != null;
+    }
+
+    static void loginStudent() {
+        // Student aanmaken
+        System.out.println("Geef je naam: ");
+        String naam = scanner.next();
+        System.out.println("Geef je studentnummer: ");
+        int studentNummer = scanner.nextInt();
+        student = new Student(studentNummer, naam);
+        System.out.println("Ingelogd als " + naam);
     }
 }
