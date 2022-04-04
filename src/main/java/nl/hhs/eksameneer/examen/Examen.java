@@ -28,6 +28,10 @@ public class Examen {
         Examen.alleExamen = alleExamen;
     }
 
+    public ArrayList<Vraag> getVragen() {
+        return vragen;
+    }
+
     public Resultaat neemAf(Student student) {
         Scanner scanner = new Scanner(System.in);
 
@@ -51,6 +55,14 @@ public class Examen {
         }
 
         return new Resultaat(student, this, cijfer);
+    }
+
+    public String getExamenCode() {
+        return examenCode;
+    }
+
+    public void setExamenCode(String examenCode) {
+        this.examenCode = examenCode;
     }
 }
 

@@ -5,7 +5,6 @@ import nl.hhs.eksameneer.resultaat.Resultaat;
 import nl.hhs.eksameneer.student.Student;
 import nl.hhs.eksameneer.vraag.GeslotenVraag;
 import nl.hhs.eksameneer.vraag.Vraag;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -14,7 +13,7 @@ public class Eksameneer {
     static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-
+        // write your code here //
         Scanner scanner = new Scanner(System.in);
 
         registerExamens();
@@ -36,7 +35,30 @@ public class Eksameneer {
             keuze = scanner.nextInt();
 
             switch (keuze) {
-                case 1 -> System.out.println("nummer 1 is gekozen");
+                case 1 -> {
+                  ArrayList<Examen> alleExamen = Examen.alleExamen;
+                    System.out.println("== Selecteer een examen ==");
+                    for(int i = 0; i < alleExamen.size(); i++){
+                        System.out.println(i+1 + ") " + alleExamen.get(i).getExamenCode());
+                    }
+                    System.out.println("0) Terug naar menu");
+                    System.out.println("====");
+
+                    int examenOptie = scanner.nextInt();
+                    if(examenOptie == 0){
+                        break;
+                    }else {
+                        Examen gekozenExamen = alleExamen.get(examenOptie-1);
+                        ArrayList<Vraag> vragen = gekozenExamen.getVragen();
+                        System.out.println("== Vragen van Examen: " + gekozenExamen.getExamenCode() + " ==");
+
+                        for (int j = 0; j < vragen.size() ; j++){
+                            System.out.println(j + ". " + vragen.get(j).getInhoud());
+                        }
+                    }
+
+                    break;
+                }
                 case 2 -> System.out.println("nummer 2 is gekozen");
                 case 3 -> loginStudent();
                 case 4 -> System.out.println("nummer 4 is gekozen");

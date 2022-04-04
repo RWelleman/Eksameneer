@@ -20,7 +20,7 @@ public class Antwoord {
         return isGoed;
     }
 
-    public void setGoed(boolean goed) {
-        isGoed = goed;
+    public void setIsGoed(boolean isGoed) {
+        this.isGoed = isGoed;
     }
 }
