@@ -52,10 +52,6 @@ public class Examen {
     public String getExamenCode() {
         return examenCode;
     }
-
-    public void setExamenCode(String examenCode) {
-        this.examenCode = examenCode;
-    }
 }
 
 // test

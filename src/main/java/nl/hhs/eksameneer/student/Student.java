@@ -14,4 +14,16 @@ public class Student implements JsonStorable {
         this.studentNummer = studentNummer;
         this.naam = naam;
     }
+
+    public int getStudentNummer() {
+        return studentNummer;
+    }
+
+    public String getNaam() {
+        return naam;
+    }
+
+    public ArrayList<Resultaat> getResultaten() {
+        return resultaten;
+    }
 }
