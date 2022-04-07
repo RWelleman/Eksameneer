@@ -8,5 +8,23 @@
       "examenCode": "Duits"
     },
     "cijfer": 6.5
+  },
+  {
+    "student": {
+      "studentNummer": -5
+    },
+    "examen": {
+      "examenCode": "Duits"
+    },
+    "cijfer": -10.0
+  },
+  {
+    "student": {
+      "studentNummer": 254,
+      "naam": "TestNaam"
+    },
+    "examen": {
+      "examenCode": "Duits"
+    }
   }
 ]

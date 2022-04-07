@@ -1,10 +1,9 @@
 package nl.hhs.eksameneer.resultaat;
 
-import nl.hhs.eksameneer.JsonStorable;
 import nl.hhs.eksameneer.student.Student;
 import nl.hhs.eksameneer.examen.Examen;
 
-public class Resultaat implements JsonStorable {
+public class Resultaat {
     private Student student;
     private Examen examen;
     private Double cijfer;

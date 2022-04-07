@@ -6,5 +6,8 @@
   {
     "studentNummer": 254,
     "naam": "TestNaam"
+  },
+  {
+    "studentNummer": -5
   }
 ]

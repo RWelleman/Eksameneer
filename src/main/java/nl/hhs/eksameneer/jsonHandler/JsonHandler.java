@@ -1,9 +1,6 @@
 package nl.hhs.eksameneer.jsonHandler;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
+import com.google.gson.*;
 import nl.hhs.eksameneer.examen.Examen;
 import nl.hhs.eksameneer.resultaat.Resultaat;
 import nl.hhs.eksameneer.student.Student;
@@ -22,6 +19,11 @@ public class JsonHandler {
         // Zoek de gegeven /storage/:fileName file
         String file = (new File("").getAbsolutePath() + "/src/main/resources/storage/" + fileName);
 
+        boolean bestaat = new File(file).exists();
+        if(!bestaat){
+            return;
+        }
+
         // Schrijf naar de file met een FileWriter object en gson
         FileWriter writer = new FileWriter(file);
         gson.toJson(object, writer);
@@ -34,6 +36,11 @@ public class JsonHandler {
     public static JsonArray haalJsonArrayOp(String fileName) throws FileNotFoundException {
         // Zoek de gegeven /storage/:fileName file
         String file = (new File("").getAbsolutePath() + "/src/main/resources/storage/" + fileName);
+        
+        boolean bestaat = new File(file).exists();
+        if(!bestaat){
+            return null;
+        }
 
         // Lees de file met een FileReader object en gson
         Reader reader = new FileReader(file);
@@ -46,8 +53,17 @@ public class JsonHandler {
         ArrayList<Student> studenten = new ArrayList<>();
         for(int i = 0; i < jsonArray.size(); i++){
             JsonObject jsonObject = (JsonObject) jsonArray.get(i);
-            int nummer = jsonObject.get("studentNummer").getAsInt();
-            String naam = jsonObject.get("naam").getAsString();
+            JsonElement nummerJsonElement = jsonObject.get("studentNummer");
+            JsonElement naamJsonElement = jsonObject.get("naam");
+
+            int nummer = -1; // -1 betekent niet gevonden
+            String naam = null;
+            if(nummerJsonElement!=null) {
+                nummer = nummerJsonElement.getAsInt();
+            }
+            if(naamJsonElement!=null) {
+                naam = jsonObject.get("naam").getAsString();
+            }
 
             Student student = new Student(nummer, naam);
             studenten.add(student);
@@ -71,7 +87,12 @@ public class JsonHandler {
         ArrayList<Resultaat> resultaten = new ArrayList<>();
         for(int i = 0; i < jsonArray.size(); i++){
             JsonObject jsonObject = (JsonObject) jsonArray.get(i);
-            double cijfer = jsonObject.get("cijfer").getAsDouble();
+            JsonElement cijferJsonEelement = jsonObject.get("cijfer");
+
+            double cijfer = -1; // -1 betekent bestaat niet
+            if(cijferJsonEelement!=null){
+                cijfer = cijferJsonEelement.getAsDouble();
+            }
 
             JsonObject studentJsonObj = (JsonObject) jsonObject.get("student");
             Student student = haalStudentOp(studentJsonObj.get("studentNummer").getAsInt());
