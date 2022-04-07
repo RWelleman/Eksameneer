@@ -1,17 +1,11 @@
 package nl.hhs.eksameneer.jsonHandler;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import nl.hhs.eksameneer.JsonStorable;
 import nl.hhs.eksameneer.examen.Examen;
 import nl.hhs.eksameneer.resultaat.Resultaat;
 import nl.hhs.eksameneer.student.Student;
 import org.junit.jupiter.api.Test;
 
-import javax.xml.transform.Result;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -31,9 +25,6 @@ class JsonHandlerTest {
         Resultaat resultaat = new Resultaat(testStudent, examen, 6.5);
         ArrayList<Object> resultaten = new ArrayList<>();
         resultaten.add(resultaat);
-
-        String studentFile = "student.json";
-        String resultaatFile = "resultaat.json";
 
         // Act
         JsonHandler.slaOp(resultaten, "resultaat.json");
