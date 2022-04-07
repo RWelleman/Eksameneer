@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import nl.hhs.eksameneer.JsonStorable;
+import nl.hhs.eksameneer.examen.Examen;
 import nl.hhs.eksameneer.resultaat.Resultaat;
 import nl.hhs.eksameneer.student.Student;
 
@@ -69,6 +70,16 @@ public class JsonHandler {
     public static ArrayList<Resultaat> haalResultatenOp() throws FileNotFoundException {
         JsonArray jsonArray = haalJsonArrayOp("resultaat.json");
         ArrayList<Resultaat> resultaten = new ArrayList<>();
+        for(int i = 0; i < jsonArray.size(); i++){
+            JsonObject jsonObject = (JsonObject) jsonArray.get(i);
+            double cijfer = jsonObject.get("cijfer").getAsDouble();
+
+            JsonObject studentJsonObj = (JsonObject) jsonObject.get("Student");
+            Student student = haalStudentOp(studentJsonObj.get("studentNummer").getAsInt());
+
+            JsonObject examenJsonObj = (JsonObject) jsonObject.get("Examen");
+            Examen examen = Examen.getExamenFromCode(examenJsonObj.get("examenCode").getAsString());
+        }
 
         return resultaten;
     }

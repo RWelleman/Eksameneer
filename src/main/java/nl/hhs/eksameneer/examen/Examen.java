@@ -52,6 +52,16 @@ public class Examen {
     public String getExamenCode() {
         return examenCode;
     }
+
+    public static Examen getExamenFromCode(String examenCode){
+        for(int i = 0; i < alleExamen.size(); i++) {
+            if(alleExamen.get(i).getExamenCode().equals(examenCode)){
+                return alleExamen.get(i);
+            };
+        }
+
+        return null;
+    };
 }
 
 // test
