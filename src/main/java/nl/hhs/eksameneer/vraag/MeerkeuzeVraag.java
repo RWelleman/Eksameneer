@@ -17,10 +17,12 @@ public class MeerkeuzeVraag extends Vraag {
         StringBuilder inhoudString = new StringBuilder();
         inhoudString.append(this.inhoud).append("\n");
 
-        for(int i = 0; i < antwoorden.size()-1; i++) {
-            inhoudString.append(i+1).append(". ").append(antwoorden.get(i));
-            if(i != antwoorden.size()-1) inhoudString.append("\n");
+        for (int i = 0; i < antwoorden.size() - 1; i++) {
+            inhoudString.append(i + 1).append(". ").append(antwoorden.get(i));
+            if (i != antwoorden.size() - 1) inhoudString.append("\n");
         }
+
+        System.out.println(inhoudString);
 
         return inhoudString.toString();
     }
