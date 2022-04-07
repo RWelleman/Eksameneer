@@ -1,9 +1,15 @@
 package nl.hhs.eksameneer.jsonHandler;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import nl.hhs.eksameneer.JsonStorable;
+import nl.hhs.eksameneer.examen.Examen;
+import nl.hhs.eksameneer.resultaat.Resultaat;
 import nl.hhs.eksameneer.student.Student;
 import org.junit.jupiter.api.Test;
 
+import javax.xml.transform.Result;
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -21,17 +27,23 @@ class JsonHandlerTest {
         studenten.add(testStudent);
         studenten.add(testStudentTwee);
 
-        String filename = "student.json";
+        Examen examen = new Examen(null, "Duits");
+        Resultaat resultaat = new Resultaat(testStudent, examen, 6.5);
+        ArrayList<Object> resultaten = new ArrayList<>();
+        resultaten.add(resultaat);
+
+        String studentFile = "student.json";
+        String resultaatFile = "resultaat.json";
 
         // Act
-        JsonHandler.slaOp(studenten, filename);
-        ArrayList<Student> opgehaaldeStudenten = (ArrayList<Student>) JsonHandler.haalOp(studenten.getClass(), "student.json");
+        JsonHandler.slaOp(resultaten, "resultaat.json");
+        JsonHandler.slaOp(studenten, "student.json");
+        ArrayList<Student> opgehaaldeStudenten = JsonHandler.haalStudentenOp();
+        Student abdallah = JsonHandler.haalStudentOp(testStudent.getStudentNummer());
 
         // Assert
-        System.out.println(studenten);
-        System.out.println(opgehaaldeStudenten);
-
-        // assertEquals(1, opgehaaldeStudent.getStudentNummer());
-        // assertEquals("Abdallah", opgehaaldeStudent.getNaam());
+        assertEquals(2, opgehaaldeStudenten.size());
+        assertEquals("Abdallah", opgehaaldeStudenten.get(0).getNaam());
+        assertEquals("Abdallah", abdallah.getNaam());
     }
 }

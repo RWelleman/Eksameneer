@@ -1,0 +1,12 @@
+[
+  {
+    "student": {
+      "studentNummer": 1,
+      "naam": "Abdallah"
+    },
+    "examen": {
+      "examenCode": "Duits"
+    },
+    "cijfer": 6.5
+  }
+]
