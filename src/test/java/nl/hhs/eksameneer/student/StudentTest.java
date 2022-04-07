@@ -14,18 +14,20 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class StudentTest {
 
     @Test
     @DisplayName("toonBehaaldeExamens hoort behaalde examens te weergeven.")
     public void toonBehaaldeExamens() {
-        Antwoord antwoord = new Antwoord("Ja");
-        antwoord.setGoed(true);
+        Antwoord antwoord = new Antwoord();
+        antwoord.setInput("test");
+        antwoord.setIsGoed(true);
 
         ArrayList<Vraag> vragen = new ArrayList<>();
 
-        vragen.add(new GeslotenVraag(null, "Deze test slaagt. Ja of Nee", "Ja", antwoord));
+        vragen.add(new GeslotenVraag("TEst", "Deze test slaagt. Ja of Nee"));
 
         Examen examen = new Examen(vragen, "SlaagtTest");
 
@@ -38,12 +40,12 @@ public class StudentTest {
 
 
         student.setBehaaldeExamens(resultaten);
+        student.getBehaaldeExamens();
 
         ArrayList<Examen> alleExamens = new ArrayList<>();
 
         alleExamens.add(examen);
         Examen.setAlleExamen(alleExamens);
-        student.getBehaaldeExamens();
 
         assertEquals(student.getBehaaldeExamens().size(), 1);
 
@@ -52,12 +54,13 @@ public class StudentTest {
     @Test
     @DisplayName("Behaalde examens heeft geen voldoende in zich")
     public void toonGeenBehaaldeExamens(){
-        Antwoord antwoord = new Antwoord("Ja");
-        antwoord.setGoed(false);
+        Antwoord antwoord = new Antwoord();
+        antwoord.setInput("ja");
+        antwoord.setIsGoed(false);
 
         ArrayList<Vraag> vragen = new ArrayList<>();
 
-        vragen.add(new GeslotenVraag(null, "Deze test slaagt. Ja of Nee", "Ja", antwoord));
+        vragen.add(new GeslotenVraag("Fuck", "Deze test slaagt. Ja of Nee"));
 
         Examen examen = new Examen(vragen, "SlaagtTest");
 
@@ -77,7 +80,7 @@ public class StudentTest {
         Examen.setAlleExamen(alleExamens);
         student.getBehaaldeExamens();
 
-        assertEquals(student.getBehaaldeExamens().size(), 0);
+        assertNull(student.getBehaaldeExamens());
     }
 
 }

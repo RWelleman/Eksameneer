@@ -17,7 +17,7 @@ public class Examen {
     public Examen(ArrayList<Vraag> vragen, String examenCode) {
         this.vragen = vragen;
         this.examenCode = examenCode;
-//        alleExamen.add(this);
+        alleExamen.add(this);
     }
 
     public static ArrayList<Examen> getAlleExamen() {
@@ -37,7 +37,8 @@ public class Examen {
 
         for (Vraag vraag : vragen) {
             System.out.println(vraag.getInhoud());
-            Antwoord antwoord = new Antwoord(scanner.next());
+            Antwoord antwoord = new Antwoord();
+            antwoord.setInput(scanner.next());
             vraag.setAntwoord(antwoord);
         }
 
@@ -60,10 +61,4 @@ public class Examen {
     public String getExamenCode() {
         return examenCode;
     }
-
-    public void setExamenCode(String examenCode) {
-        this.examenCode = examenCode;
-    }
 }
-
-// test

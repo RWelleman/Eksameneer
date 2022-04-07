@@ -3,6 +3,8 @@ package nl.hhs.eksameneer.student;
 import nl.hhs.eksameneer.resultaat.Resultaat;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Student {
     private int studentNummer;
@@ -32,7 +34,10 @@ public class Student {
     }
 
     public void setBehaaldeExamens(ArrayList<Resultaat> behaaldeExamens) {
-        this.behaaldeExamens = behaaldeExamens;
-
+        List<Resultaat> nieuweLijst = behaaldeExamens.stream().filter(r -> r.getCijfer() > 5.5).collect(Collectors.toList());
+        if (nieuweLijst == null){
+            this.behaaldeExamens = null;
+        }
+        this.behaaldeExamens.addAll(nieuweLijst);
     }
 }
