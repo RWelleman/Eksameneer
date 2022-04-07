@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import nl.hhs.eksameneer.JsonStorable;
 import nl.hhs.eksameneer.examen.Examen;
 import nl.hhs.eksameneer.resultaat.Resultaat;
 import nl.hhs.eksameneer.student.Student;
@@ -74,11 +73,14 @@ public class JsonHandler {
             JsonObject jsonObject = (JsonObject) jsonArray.get(i);
             double cijfer = jsonObject.get("cijfer").getAsDouble();
 
-            JsonObject studentJsonObj = (JsonObject) jsonObject.get("Student");
+            JsonObject studentJsonObj = (JsonObject) jsonObject.get("student");
             Student student = haalStudentOp(studentJsonObj.get("studentNummer").getAsInt());
 
-            JsonObject examenJsonObj = (JsonObject) jsonObject.get("Examen");
+            JsonObject examenJsonObj = (JsonObject) jsonObject.get("examen");
             Examen examen = Examen.getExamenFromCode(examenJsonObj.get("examenCode").getAsString());
+
+            Resultaat resultaat = new Resultaat(student, examen, cijfer);
+            resultaten.add(resultaat);
         }
 
         return resultaten;

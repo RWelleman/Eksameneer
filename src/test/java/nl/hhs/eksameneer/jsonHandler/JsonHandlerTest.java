@@ -40,10 +40,15 @@ class JsonHandlerTest {
         JsonHandler.slaOp(studenten, "student.json");
         ArrayList<Student> opgehaaldeStudenten = JsonHandler.haalStudentenOp();
         Student abdallah = JsonHandler.haalStudentOp(testStudent.getStudentNummer());
+        ArrayList<Resultaat> opgehaaldeResultaten = JsonHandler.haalResultatenOp();
 
         // Assert
         assertEquals(2, opgehaaldeStudenten.size());
         assertEquals("Abdallah", opgehaaldeStudenten.get(0).getNaam());
         assertEquals("Abdallah", abdallah.getNaam());
+
+        assertEquals(1, opgehaaldeResultaten.size());
+        assertEquals("Abdallah", opgehaaldeResultaten.get(0).getStudent().getNaam());
+        assertEquals(6.5, opgehaaldeResultaten.get(0).getCijfer());
     }
 }
