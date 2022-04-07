@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Examen {
-    private final String examenCode;
+    private String examenCode;
     private final ArrayList<Vraag> vragen;
     private ArrayList<Resultaat> resultaten;
     public static ArrayList<Examen> alleExamen = new ArrayList<>();
