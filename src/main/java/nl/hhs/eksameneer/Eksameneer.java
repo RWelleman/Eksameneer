@@ -10,6 +10,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Eksameneer {
+    // ArrayList van alle studenten
+    static ArrayList<Student> studenten;
+
+    // ingelogde student op client
     static Student student = null;
     static Scanner scanner = new Scanner(System.in);
 
@@ -103,7 +107,27 @@ public class Eksameneer {
         String naam = scanner.next();
         System.out.println("Geef je studentnummer: ");
         int studentNummer = scanner.nextInt();
+        boolean bestaatAl = true;
+        while(bestaatAl){
+            boolean gevonden = false;
+            for(int i = 0; i < studenten.size() ; i++){
+                Student s = studenten.get(i);
+                if(s.getStudentNummer() == studentNummer){
+                    gevonden = true;
+                }
+            }
+
+            if(gevonden){
+                System.out.println("Studentnummer bestaat al! Geef een nieuwe studentnumer op:");
+                studentNummer = scanner.nextInt();
+            }else{
+                bestaatAl = false;
+            }
+        }
+
         student = new Student(studentNummer, naam);
+        studenten.add(student);
+
         System.out.println("Ingelogd als " + naam);
     }
 }
