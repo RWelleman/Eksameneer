@@ -11,10 +11,24 @@ import java.util.ArrayList;
 public class JsonHandler {
     static Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-    // Voordat er opgeslagen wordt haal ook alle studenten op. Vb:
-    // ArrayList<Student> opgehaaldeStudenten = jsonHandler.haalStudentenOp();
-    // Voeg dan toe met opgehaaldeStudenten.add(...) enz.
-    // Dit zodat oude data niet overgeschreven wordt
+    public static void slaStudentenOp() throws IOException {
+        // Zoek de gegeven /storage/:fileName file
+        String file = (new File("").getAbsolutePath() + "/src/main/resources/storage/student.json");
+
+        boolean bestaat = new File(file).exists();
+        if(!bestaat){
+            return;
+        }
+
+        // Schrijf naar de file met een FileWriter object en gson
+        FileWriter writer = new FileWriter(file);
+        gson.toJson(Student.alleStudenten, writer);
+
+        // Sluit de FileWriter
+        writer.flush();
+        writer.close();
+    }
+
     public static void slaOp(ArrayList<Object> object, String fileName) throws IOException {
         // Zoek de gegeven /storage/:fileName file
         String file = (new File("").getAbsolutePath() + "/src/main/resources/storage/" + fileName);

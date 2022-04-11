@@ -6,18 +6,18 @@ import nl.hhs.eksameneer.resultaat.Resultaat;
 import nl.hhs.eksameneer.student.Student;
 import nl.hhs.eksameneer.vraag.GeslotenVraag;
 import nl.hhs.eksameneer.vraag.Vraag;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Eksameneer {
-    // ArrayList van alle studenten
-    static ArrayList<Student> studenten;
 
     // ingelogde student op client
     static Student student = null;
     static Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         // write your code here //
         Scanner scanner = new Scanner(System.in);
 
@@ -101,7 +101,7 @@ public class Eksameneer {
         return student != null;
     }
 
-    static void loginStudent() {
+    static void loginStudent() throws IOException {
         // Student aanmaken
         System.out.println("Geef je naam: ");
         String naam = scanner.next();
@@ -110,8 +110,8 @@ public class Eksameneer {
         boolean bestaatAl = true;
         while(bestaatAl){
             boolean gevonden = false;
-            for(int i = 0; i < studenten.size() ; i++){
-                Student s = studenten.get(i);
+            for(int i = 0; i < Student.alleStudenten.size() ; i++){
+                Student s = Student.alleStudenten.get(i);
                 if(s.getStudentNummer() == studentNummer){
                     gevonden = true;
                 }
@@ -126,7 +126,8 @@ public class Eksameneer {
         }
 
         student = new Student(studentNummer, naam);
-        studenten.add(student);
+        Student.alleStudenten.add(student);
+        JsonHandler.slaStudentenOp();
 
         System.out.println("Ingelogd als " + naam);
     }

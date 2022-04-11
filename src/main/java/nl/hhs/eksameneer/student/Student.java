@@ -9,6 +9,9 @@ public class Student {
     private String naam;
     private ArrayList<Resultaat> resultaten;
 
+    // ArrayList van alle studenten
+    public static ArrayList<Student> alleStudenten;
+
     public Student(int studentNummer, String naam){
         this.studentNummer = studentNummer;
         this.naam = naam;

@@ -3,10 +3,13 @@ package nl.hhs.eksameneer.resultaat;
 import nl.hhs.eksameneer.student.Student;
 import nl.hhs.eksameneer.examen.Examen;
 
+import java.util.ArrayList;
+
 public class Resultaat {
     private Student student;
     private Examen examen;
     private Double cijfer;
+    public static ArrayList<Resultaat> alleResultaten = new ArrayList<>();
 
     public Resultaat (Student student, Examen examen, Double cijfer) {
         this.student = student;

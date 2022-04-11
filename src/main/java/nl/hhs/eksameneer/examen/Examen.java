@@ -5,6 +5,8 @@ import nl.hhs.eksameneer.resultaat.Resultaat;
 import nl.hhs.eksameneer.student.Student;
 import nl.hhs.eksameneer.vraag.Vraag;
 
+import javax.print.attribute.ResolutionSyntax;
+import javax.xml.transform.Result;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -46,7 +48,10 @@ public class Examen {
             cijfer = correct / vragen.size() * 9 + 1;
         }
 
-        return new Resultaat(student, this, cijfer);
+        Resultaat resultaat = new Resultaat(student, this, cijfer);
+        Resultaat.alleResultaten.add(resultaat);
+
+        return resultaat;
     }
 
     public String getExamenCode() {
