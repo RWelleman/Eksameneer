@@ -1,5 +1,6 @@
 package nl.hhs.eksameneer.student;
 
+import nl.hhs.eksameneer.jsonHandler.JsonHandler;
 import nl.hhs.eksameneer.resultaat.Resultaat;
 
 import java.util.ArrayList;
@@ -15,6 +16,8 @@ public class Student {
         this.studentNummer = studentNummer;
         this.naam = naam;
     }
+
+
 
     public int getStudentNummer() {
         return studentNummer;
@@ -39,5 +42,9 @@ public class Student {
             this.behaaldeExamens = null;
         }
         this.behaaldeExamens.addAll(nieuweLijst);
+    }
+
+    public void aanmelden(String naam, int studentNummer){
+        JsonHandler.haalStudentOp(studentNummer);
     }
 }
