@@ -1,6 +1,7 @@
 package nl.hhs.eksameneer;
 
 import nl.hhs.eksameneer.examen.Examen;
+import nl.hhs.eksameneer.jsonHandler.JsonHandler;
 import nl.hhs.eksameneer.resultaat.Resultaat;
 import nl.hhs.eksameneer.student.Student;
 import nl.hhs.eksameneer.vraag.GeslotenVraag;

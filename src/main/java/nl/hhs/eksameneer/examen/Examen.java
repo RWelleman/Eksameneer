@@ -53,9 +53,15 @@ public class Examen {
         return examenCode;
     }
 
-    public void setExamenCode(String examenCode) {
-        this.examenCode = examenCode;
-    }
+    public static Examen getExamenFromCode(String examenCode){
+        for(int i = 0; i < alleExamen.size(); i++) {
+            if(alleExamen.get(i).getExamenCode().equals(examenCode)){
+                return alleExamen.get(i);
+            };
+        }
+
+        return null;
+    };
 }
 
 // test
