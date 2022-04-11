@@ -10,6 +10,10 @@ public class Student {
     private int studentNummer;
     private String naam;
     private ArrayList<Resultaat> behaaldeExamens;
+    private ArrayList<Resultaat> resultaten = new ArrayList<>();
+
+    // ArrayList van alle studenten
+    public static ArrayList<Student> alleStudenten = new ArrayList<>();
 
     public Student(int studentNummer, String naam){
         this.studentNummer = studentNummer;

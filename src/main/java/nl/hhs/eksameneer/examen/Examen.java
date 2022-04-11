@@ -1,10 +1,14 @@
 package nl.hhs.eksameneer.examen;
 
 import nl.hhs.eksameneer.antwoord.Antwoord;
+import nl.hhs.eksameneer.jsonHandler.JsonHandler;
 import nl.hhs.eksameneer.resultaat.Resultaat;
 import nl.hhs.eksameneer.student.Student;
 import nl.hhs.eksameneer.vraag.Vraag;
 
+import javax.print.attribute.ResolutionSyntax;
+import javax.xml.transform.Result;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -32,7 +36,7 @@ public class Examen {
         return vragen;
     }
 
-    public Resultaat neemAf(Student student) {
+    public Resultaat neemAf(Student student) throws IOException {
         Scanner scanner = new Scanner(System.in);
 
         for (Vraag vraag : vragen) {
@@ -55,7 +59,11 @@ public class Examen {
             cijfer = correct / vragen.size() * 9 + 1;
         }
 
-        return new Resultaat(student, this, cijfer);
+        Resultaat resultaat = new Resultaat(student, this, cijfer);
+        Resultaat.alleResultaten.add(resultaat);
+        JsonHandler.slaResultatenOp();
+
+        return resultaat;
     }
 
     public String getExamenCode() {

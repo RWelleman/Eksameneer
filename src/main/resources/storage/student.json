@@ -1,13 +1,16 @@
 [
   {
     "studentNummer": 1,
-    "naam": "Abdallah"
+    "naam": "Abdallah",
+    "resultaten": []
   },
   {
     "studentNummer": 254,
-    "naam": "TestNaam"
+    "naam": "TestNaam",
+    "resultaten": []
   },
   {
-    "studentNummer": -5
+    "studentNummer": -5,
+    "resultaten": []
   }
 ]

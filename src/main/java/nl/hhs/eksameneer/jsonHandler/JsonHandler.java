@@ -11,13 +11,14 @@ import java.util.ArrayList;
 public class JsonHandler {
     static Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-    // Voordat er opgeslagen wordt haal ook alle studenten op. Vb:
-    // ArrayList<Student> opgehaaldeStudenten = jsonHandler.haalStudentenOp();
-    // Voeg dan toe met opgehaaldeStudenten.add(...) enz.
-    // Dit zodat oude data niet overgeschreven wordt
-    public static void slaOp(ArrayList<Object> object, String fileName) throws IOException {
+    public static void initialiseer() throws FileNotFoundException {
+        Student.alleStudenten = haalStudentenOp();
+        Resultaat.alleResultaten = haalResultatenOp();
+    }
+
+    public static void slaStudentenOp() throws IOException {
         // Zoek de gegeven /storage/:fileName file
-        String file = (new File("").getAbsolutePath() + "/src/main/resources/storage/" + fileName);
+        String file = (new File("").getAbsolutePath() + "/src/main/resources/storage/student.json");
 
         boolean bestaat = new File(file).exists();
         if(!bestaat){
@@ -26,17 +27,35 @@ public class JsonHandler {
 
         // Schrijf naar de file met een FileWriter object en gson
         FileWriter writer = new FileWriter(file);
-        gson.toJson(object, writer);
+        gson.toJson(Student.alleStudenten, writer);
 
         // Sluit de FileWriter
         writer.flush();
         writer.close();
     }
 
-    public static JsonArray haalJsonArrayOp(String fileName) throws FileNotFoundException {
+    public static void slaResultatenOp() throws IOException {
+        // Zoek de gegeven /storage/:fileName file
+        String file = (new File("").getAbsolutePath() + "/src/main/resources/storage/resultaat.json");
+
+        boolean bestaat = new File(file).exists();
+        if(!bestaat){
+            return;
+        }
+
+        // Schrijf naar de file met een FileWriter object en gson
+        FileWriter writer = new FileWriter(file);
+        gson.toJson(Resultaat.alleResultaten, writer);
+
+        // Sluit de FileWriter
+        writer.flush();
+        writer.close();
+    }
+
+    private static JsonArray haalJsonArrayOp(String fileName) throws FileNotFoundException {
         // Zoek de gegeven /storage/:fileName file
         String file = (new File("").getAbsolutePath() + "/src/main/resources/storage/" + fileName);
-        
+
         boolean bestaat = new File(file).exists();
         if(!bestaat){
             return null;

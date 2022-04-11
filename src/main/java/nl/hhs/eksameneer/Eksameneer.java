@@ -6,15 +6,21 @@ import nl.hhs.eksameneer.resultaat.Resultaat;
 import nl.hhs.eksameneer.student.Student;
 import nl.hhs.eksameneer.vraag.GeslotenVraag;
 import nl.hhs.eksameneer.vraag.Vraag;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Eksameneer {
+
+    // ingelogde student op client
     static Student student = null;
     static Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         // write your code here //
+        JsonHandler.initialiseer();
+
         Scanner scanner = new Scanner(System.in);
 
         registerExamens();
@@ -97,13 +103,34 @@ public class Eksameneer {
         return student != null;
     }
 
-    static void loginStudent() {
+    static void loginStudent() throws IOException {
         // Student aanmaken
         System.out.println("Geef je naam: ");
         String naam = scanner.next();
         System.out.println("Geef je studentnummer: ");
         int studentNummer = scanner.nextInt();
+        boolean bestaatAl = true;
+        while(bestaatAl){
+            boolean gevonden = false;
+            for(int i = 0; i < Student.alleStudenten.size() ; i++){
+                Student s = Student.alleStudenten.get(i);
+                if(s.getStudentNummer() == studentNummer){
+                    gevonden = true;
+                }
+            }
+
+            if(gevonden){
+                System.out.println("Studentnummer bestaat al! Geef een nieuwe studentnumer op:");
+                studentNummer = scanner.nextInt();
+            }else{
+                bestaatAl = false;
+            }
+        }
+
         student = new Student(studentNummer, naam);
+        Student.alleStudenten.add(student);
+        JsonHandler.slaStudentenOp();
+
         System.out.println("Ingelogd als " + naam);
     }
 }
