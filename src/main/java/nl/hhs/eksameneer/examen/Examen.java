@@ -17,7 +17,7 @@ public class Examen {
     public Examen(ArrayList<Vraag> vragen, String examenCode) {
         this.vragen = vragen;
         this.examenCode = examenCode;
-        alleExamen.add(this);
+        if (vragen != null && examenCode != null) alleExamen.add(this);
     }
 
     public ArrayList<Vraag> getVragen() {
@@ -25,6 +25,8 @@ public class Examen {
     }
 
     public Resultaat neemAf(Student student) {
+        if (student == null) return null;
+
         Scanner scanner = new Scanner(System.in);
 
         for (Vraag vraag : vragen) {
