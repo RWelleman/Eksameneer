@@ -37,4 +37,5 @@ public class Resultaat {
     public void setCijfer(Double cijfer) {
         this.cijfer = cijfer;
     }
+
 }

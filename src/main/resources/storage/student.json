@@ -1,0 +1,13 @@
+[
+  {
+    "studentNummer": 1,
+    "naam": "Abdallah"
+  },
+  {
+    "studentNummer": 254,
+    "naam": "TestNaam"
+  },
+  {
+    "studentNummer": -5
+  }
+]
