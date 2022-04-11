@@ -2,7 +2,8 @@
   {
     "student": {
       "studentNummer": 1,
-      "naam": "Abdallah"
+      "naam": "Abdallah",
+      "resultaten": []
     },
     "examen": {
       "examenCode": "Duits"
@@ -11,17 +12,19 @@
   },
   {
     "student": {
-      "studentNummer": -5
+      "studentNummer": -5,
+      "resultaten": []
     },
     "examen": {
       "examenCode": "Duits"
     },
-    "cijfer": -10.0
+    "cijfer": 1.0
   },
   {
     "student": {
       "studentNummer": 254,
-      "naam": "TestNaam"
+      "naam": "TestNaam",
+      "resultaten": []
     },
     "examen": {
       "examenCode": "Duits"

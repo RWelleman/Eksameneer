@@ -19,6 +19,8 @@ public class Eksameneer {
 
     public static void main(String[] args) throws IOException {
         // write your code here //
+        JsonHandler.initialiseer();
+
         Scanner scanner = new Scanner(System.in);
 
         registerExamens();

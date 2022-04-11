@@ -14,6 +14,9 @@ public class Resultaat {
     public Resultaat (Student student, Examen examen, Double cijfer) {
         this.student = student;
         this.examen = examen;
+        if(cijfer != null && cijfer < 1){
+            cijfer = 1.0; // Minimale cijfer is 1.0
+        }
         this.cijfer = cijfer;
     }
 

@@ -11,6 +11,11 @@ import java.util.ArrayList;
 public class JsonHandler {
     static Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
+    public static void initialiseer() throws FileNotFoundException {
+        Student.alleStudenten = haalStudentenOp();
+        Resultaat.alleResultaten = haalResultatenOp();
+    }
+
     public static void slaStudentenOp() throws IOException {
         // Zoek de gegeven /storage/:fileName file
         String file = (new File("").getAbsolutePath() + "/src/main/resources/storage/student.json");
@@ -47,28 +52,10 @@ public class JsonHandler {
         writer.close();
     }
 
-    public static void slaOp(ArrayList<Object> object, String fileName) throws IOException {
+    private static JsonArray haalJsonArrayOp(String fileName) throws FileNotFoundException {
         // Zoek de gegeven /storage/:fileName file
         String file = (new File("").getAbsolutePath() + "/src/main/resources/storage/" + fileName);
 
-        boolean bestaat = new File(file).exists();
-        if(!bestaat){
-            return;
-        }
-
-        // Schrijf naar de file met een FileWriter object en gson
-        FileWriter writer = new FileWriter(file);
-        gson.toJson(object, writer);
-
-        // Sluit de FileWriter
-        writer.flush();
-        writer.close();
-    }
-
-    public static JsonArray haalJsonArrayOp(String fileName) throws FileNotFoundException {
-        // Zoek de gegeven /storage/:fileName file
-        String file = (new File("").getAbsolutePath() + "/src/main/resources/storage/" + fileName);
-        
         boolean bestaat = new File(file).exists();
         if(!bestaat){
             return null;
