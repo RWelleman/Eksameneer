@@ -11,11 +11,14 @@ public class Resultaat {
     private Double cijfer;
     public static ArrayList<Resultaat> alleResultaten = new ArrayList<>();
 
-    public Resultaat (Student student, Examen examen, Double cijfer) {
+    public Resultaat(Student student, Examen examen, Double cijfer) {
         this.student = student;
         this.examen = examen;
-        if(cijfer != null && cijfer < 1){
+        if (cijfer != null && cijfer < 1) {
             cijfer = 1.0; // Minimale cijfer is 1.0
+        }
+        if (cijfer != null && cijfer > 10) {
+            cijfer = 10.0;
         }
         this.cijfer = cijfer;
     }

@@ -17,7 +17,7 @@ public class Eksameneer {
     static Student student = null;
     static Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         // write your code here //
         JsonHandler.initialiseer();
 
@@ -32,56 +32,54 @@ public class Eksameneer {
             System.out.println("(1) Lijst met examens.");
             System.out.println("(2) Lijst met studenten.");
             System.out.println("(3) Nieuwe student inschrijven.");
-            System.out.println("(4) Student verwijderen.");
-            System.out.println("(5) Examen afnemen.");
-            System.out.println("(6) Is student geslaagd voor test?");
-            System.out.println("(7) Welke examens heeft student gehaald?");
-            System.out.println("(8) Welke student heeft de meeste examens gehaald?");
+            System.out.println("(4) Examen afnemen.");
+            System.out.println("(5) Is student geslaagd voor test?");
+            System.out.println("(6) Welke examens heeft student gehaald?");
+            System.out.println("(7) Welke student heeft de meeste examens gehaald?");
             System.out.println("(0) Exit.");
             System.out.print("Uw keuze:");
             keuze = scanner.nextInt();
 
             switch (keuze) {
                 case 1 -> {
-                  ArrayList<Examen> alleExamen = Examen.alleExamen;
+                    ArrayList<Examen> alleExamen = Examen.alleExamen;
                     System.out.println("== Selecteer een examen ==");
-                    for(int i = 0; i < alleExamen.size(); i++){
-                        System.out.println(i+1 + ") " + alleExamen.get(i).getExamenCode());
+                    for (int i = 0; i < alleExamen.size(); i++) {
+                        System.out.println(i + 1 + ") " + alleExamen.get(i).getExamenCode());
                     }
                     System.out.println("0) Terug naar menu");
                     System.out.println("====");
 
                     int examenOptie = scanner.nextInt();
-                    if(examenOptie == 0){
-                        break;
-                    }else {
-                        Examen gekozenExamen = alleExamen.get(examenOptie-1);
+                    if (examenOptie != 0) {
+                        Examen gekozenExamen = alleExamen.get(examenOptie - 1);
                         ArrayList<Vraag> vragen = gekozenExamen.getVragen();
                         System.out.println("== Vragen van Examen: " + gekozenExamen.getExamenCode() + " ==");
 
-                        for (int j = 0; j < vragen.size() ; j++){
+                        for (int j = 0; j < vragen.size(); j++) {
                             System.out.println(j + ". " + vragen.get(j).getInhoud());
                         }
                     }
-
-                    break;
                 }
-                case 2 -> System.out.println("nummer 2 is gekozen");
-                case 3 -> loginStudent();
-                case 4 -> System.out.println("nummer 4 is gekozen");
-                case 5 -> {
-                    if(isLoggedIn(student)) {
+                case 2 -> showStudents();
+                case 3 -> Student.loginStudent();
+                case 4 -> {
+                    if (Student.isLoggedIn(student)) {
                         System.out.println("Welk examen wil je afnemen? (getal)");
                         int selectedExam = scanner.nextInt();
                         Resultaat resultaat = Examen.alleExamen.get(selectedExam - 1).neemAf(student);
                         System.out.println(resultaat.getCijfer());
                     } else {
-                        loginStudent();
+                        Student.loginStudent();
+                        System.out.println("Welk examen wil je afnemen? (getal)");
+                        int selectedExam = scanner.nextInt();
+                        Resultaat resultaat = Examen.alleExamen.get(selectedExam - 1).neemAf(student);
+                        System.out.println(resultaat.getCijfer());
                     }
                 }
-                case 6 -> System.out.println("nummer 6 is gekozen");
-                case 7 -> System.out.println("nummer 7 is gekozen");
-                case 8 -> System.out.println("nummer 8 is gekozen");
+                case 5 -> isStudentSuccessful();
+                case 6 -> System.out.println("nummer 7 is gekozen");
+                case 7 -> meestBehaaldeResultaat();
                 case 0 -> {
                     System.out.println("exit");
                     System.exit(0);
@@ -99,38 +97,43 @@ public class Eksameneer {
         new Examen(vragen, "Werkend examen");
     }
 
-    static boolean isLoggedIn(Student student) {
-        return student != null;
+    private static void showStudents() {
+        for (Student student : Student.alleStudenten) {
+            System.out.println(student.toString());
+        }
     }
 
-    static void loginStudent() throws IOException {
-        // Student aanmaken
-        System.out.println("Geef je naam: ");
-        String naam = scanner.next();
-        System.out.println("Geef je studentnummer: ");
+    private static void isStudentSuccessful() {
+        System.out.println("Studentnummer: ");
         int studentNummer = scanner.nextInt();
-        boolean bestaatAl = true;
-        while(bestaatAl){
-            boolean gevonden = false;
-            for(int i = 0; i < Student.alleStudenten.size() ; i++){
-                Student s = Student.alleStudenten.get(i);
-                if(s.getStudentNummer() == studentNummer){
-                    gevonden = true;
-                }
-            }
+        System.out.println("Examencode: ");
+        String examenCode = scanner.next();
+        Resultaat resultaat = JsonHandler.haalResultaatOp(studentNummer, examenCode);
 
-            if(gevonden){
-                System.out.println("Studentnummer bestaat al! Geef een nieuwe studentnumer op:");
-                studentNummer = scanner.nextInt();
-            }else{
-                bestaatAl = false;
+        if (resultaat != null) {
+            boolean gehaald = resultaat.getCijfer() > 5.5;
+            System.out.println("Student " + studentNummer + " heeft een " + resultaat.getCijfer() + " en het examen dus " + (gehaald ? "wel" : "niet") + " gehaald!");
+        } else {
+            System.out.println("Student " + studentNummer + " heeft dit examen niet gemaakt!");
+        }
+
+    }
+
+    private static void meestBehaaldeResultaat() {
+        System.out.println("Meest behaald examens");
+        ArrayList<Student> studenten = JsonHandler.haalStudentenOp();
+
+        Student highestScore = new Student(-1, "Niemand");
+        highestScore.setBehaaldeExamens(new ArrayList<>());
+
+        for (Student student : studenten) {
+            if (student.getBehaaldeExamens() == null) continue;
+
+            if (student.getBehaaldeExamens().size() > highestScore.getBehaaldeExamens().size()) {
+                highestScore = student;
             }
         }
 
-        student = new Student(studentNummer, naam);
-        Student.alleStudenten.add(student);
-        JsonHandler.slaStudentenOp();
-
-        System.out.println("Ingelogd als " + naam);
+        System.out.println(highestScore.getNaam() + " heeft de meeste resultaten behaalt!");
     }
 }

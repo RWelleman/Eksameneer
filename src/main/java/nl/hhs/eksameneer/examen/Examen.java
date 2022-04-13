@@ -6,8 +6,6 @@ import nl.hhs.eksameneer.resultaat.Resultaat;
 import nl.hhs.eksameneer.student.Student;
 import nl.hhs.eksameneer.vraag.Vraag;
 
-import javax.print.attribute.ResolutionSyntax;
-import javax.xml.transform.Result;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -36,7 +34,7 @@ public class Examen {
         return vragen;
     }
 
-    public Resultaat neemAf(Student student) throws IOException {
+    public Resultaat neemAf(Student student) {
         Scanner scanner = new Scanner(System.in);
 
         for (Vraag vraag : vragen) {
@@ -50,13 +48,13 @@ public class Examen {
 
         System.out.println("Lever examen in? (j/n)");
         String jn = scanner.next();
-        if(jn.equals("j")) {
+        if (jn.equals("j")) {
             int correct = 0;
             for (Vraag vraag : vragen) {
                 Antwoord antwoord = vraag.controleer();
                 correct += antwoord.isGoed() ? 1 : 0;
             }
-            cijfer = correct / vragen.size() * 9 + 1;
+            cijfer = correct / (double) vragen.size() * 9 + 1;
         }
 
         Resultaat resultaat = new Resultaat(student, this, cijfer);
@@ -70,13 +68,13 @@ public class Examen {
         return examenCode;
     }
 
-    public static Examen getExamenFromCode(String examenCode){
-        for(int i = 0; i < alleExamen.size(); i++) {
-            if(alleExamen.get(i).getExamenCode().equals(examenCode)){
-                return alleExamen.get(i);
-            };
+    public static Examen getExamenFromCode(String examenCode) {
+        for (Examen alleExaman : alleExamen) {
+            if (alleExaman.getExamenCode().equals(examenCode)) {
+                return alleExaman;
+            }
         }
 
         return null;
-    };
+    }
 }
