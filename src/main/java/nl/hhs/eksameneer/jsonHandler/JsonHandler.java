@@ -7,90 +7,146 @@ import nl.hhs.eksameneer.student.Student;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class JsonHandler {
     static Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-    // Voordat er opgeslagen wordt haal ook alle studenten op. Vb:
-    // ArrayList<Student> opgehaaldeStudenten = jsonHandler.haalStudentenOp();
-    // Voeg dan toe met opgehaaldeStudenten.add(...) enz.
-    // Dit zodat oude data niet overgeschreven wordt
-    public static void slaOp(ArrayList<Object> object, String fileName) throws IOException {
+    public static void initialiseer() {
+        Student.alleStudenten = haalStudentenOp();
+        Resultaat.alleResultaten = haalResultatenOp();
+    }
+
+    /**
+     * @param objects  ArrayList of all objects to be stored into the json file
+     * @param fileName name of the JSON file to store data objects in
+     */
+    public static boolean slaOp(ArrayList<Object> objects, String fileName) {
         // Zoek de gegeven /storage/:fileName file
         String file = (new File("").getAbsolutePath() + "/src/main/resources/storage/" + fileName);
 
-        boolean bestaat = new File(file).exists();
-        if(!bestaat){
-            return;
+        if (!new File(file).exists()) {
+            return false;
         }
 
         // Schrijf naar de file met een FileWriter object en gson
-        FileWriter writer = new FileWriter(file);
-        gson.toJson(object, writer);
+        try {
+            FileWriter writer = new FileWriter(file);
+            gson.toJson(objects, writer);
 
-        // Sluit de FileWriter
-        writer.flush();
-        writer.close();
+            writer.flush();
+            writer.close();
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
-    public static JsonArray haalJsonArrayOp(String fileName) throws FileNotFoundException {
+    public static boolean slaStudentenOp() {
+        List<Object> studentList = Student.alleStudenten.stream().map(student -> (Object) student).toList();
+        ArrayList<Object> students = new ArrayList<>(studentList);
+        return slaOp(students, "student.json");
+    }
+
+    public static boolean slaResultatenOp() {
+        List<Object> studentList = Resultaat.alleResultaten.stream().map(resultaat -> (Object) resultaat).toList();
+        ArrayList<Object> students = new ArrayList<>(studentList);
+        return slaOp(students, "result.json");
+    }
+
+    /**
+     * @param fileName the file to be fetched data from
+     * @return a JsonArray filled with the json data from given file
+     */
+    private static JsonArray haalJsonArrayOp(String fileName) {
         // Zoek de gegeven /storage/:fileName file
         String file = (new File("").getAbsolutePath() + "/src/main/resources/storage/" + fileName);
-        
-        boolean bestaat = new File(file).exists();
-        if(!bestaat){
+
+        if (!new File(file).exists()) {
             return null;
         }
 
         // Lees de file met een FileReader object en gson
-        Reader reader = new FileReader(file);
-
-        return gson.fromJson(reader, JsonArray.class);
+        try {
+            Reader reader = new FileReader(file);
+            return gson.fromJson(reader, JsonArray.class);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
-    public static ArrayList<Student> haalStudentenOp() throws FileNotFoundException {
-        JsonArray jsonArray = haalJsonArrayOp( "student.json");
+    public static ArrayList<Student> haalStudentenOp() {
+        JsonArray jsonArray = haalJsonArrayOp("student.json");
         ArrayList<Student> studenten = new ArrayList<>();
-        for(int i = 0; i < jsonArray.size(); i++){
+
+        if (jsonArray == null) {
+            return studenten;
+        }
+
+        for (int i = 0; i < jsonArray.size(); i++) {
             JsonObject jsonObject = (JsonObject) jsonArray.get(i);
             JsonElement nummerJsonElement = jsonObject.get("studentNummer");
             JsonElement naamJsonElement = jsonObject.get("naam");
 
             int nummer = -1; // -1 betekent niet gevonden
             String naam = null;
-            if(nummerJsonElement!=null) {
+            if (nummerJsonElement != null) {
                 nummer = nummerJsonElement.getAsInt();
             }
-            if(naamJsonElement!=null) {
+            if (naamJsonElement != null) {
                 naam = jsonObject.get("naam").getAsString();
             }
 
-            Student student = new Student(nummer, naam);
-            studenten.add(student);
+            if (nummer != -1) {
+                Student student = new Student(nummer, naam);
+                studenten.add(student);
+            }
         }
 
         return studenten;
     }
 
-    public static Student haalStudentOp(int studentNummer) throws FileNotFoundException {
+    public static Student haalStudentOp(int studentNummer) {
         ArrayList<Student> opgehaaldeStudenten = haalStudentenOp();
+
         for (Student student : opgehaaldeStudenten) {
             if (student.getStudentNummer() == studentNummer) {
                 return student;
             }
         }
+
         return null;
     }
 
-    public static ArrayList<Resultaat> haalResultatenOp() throws FileNotFoundException {
+    public static Resultaat haalResultaatOp(int studentNummer, String examenCode) {
+
+        ArrayList<Resultaat> opgehaaldeResultaten = haalResultatenOp();
+        for (Resultaat resultaat : opgehaaldeResultaten) {
+            if (resultaat.getStudent().getStudentNummer() == studentNummer && Objects.equals(resultaat.getExamen().getExamenCode(), examenCode)) {
+                return resultaat;
+            }
+        }
+
+        return null;
+    }
+
+    public static ArrayList<Resultaat> haalResultatenOp() {
         JsonArray jsonArray = haalJsonArrayOp("resultaat.json");
         ArrayList<Resultaat> resultaten = new ArrayList<>();
-        for(int i = 0; i < jsonArray.size(); i++){
+
+        if (jsonArray == null) {
+            return resultaten;
+        }
+
+        for (int i = 0; i < jsonArray.size(); i++) {
             JsonObject jsonObject = (JsonObject) jsonArray.get(i);
             JsonElement cijferJsonEelement = jsonObject.get("cijfer");
 
             double cijfer = -1; // -1 betekent bestaat niet
-            if(cijferJsonEelement!=null){
+            if (cijferJsonEelement != null) {
                 cijfer = cijferJsonEelement.getAsDouble();
             }
 

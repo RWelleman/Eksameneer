@@ -1,10 +1,12 @@
 package nl.hhs.eksameneer.examen;
 
 import nl.hhs.eksameneer.antwoord.Antwoord;
+import nl.hhs.eksameneer.jsonHandler.JsonHandler;
 import nl.hhs.eksameneer.resultaat.Resultaat;
 import nl.hhs.eksameneer.student.Student;
 import nl.hhs.eksameneer.vraag.Vraag;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -20,6 +22,14 @@ public class Examen {
         if (vragen != null && examenCode != null) alleExamen.add(this);
     }
 
+    public static ArrayList<Examen> getAlleExamen() {
+        return alleExamen;
+    }
+
+    public static void setAlleExamen(ArrayList<Examen> alleExamen) {
+        Examen.alleExamen = alleExamen;
+    }
+
     public ArrayList<Vraag> getVragen() {
         return vragen;
     }
@@ -31,7 +41,8 @@ public class Examen {
 
         for (Vraag vraag : vragen) {
             System.out.println(vraag.getInhoud());
-            Antwoord antwoord = new Antwoord(scanner.next());
+            Antwoord antwoord = new Antwoord();
+            antwoord.setInput(scanner.next());
             vraag.setAntwoord(antwoord);
         }
 
@@ -39,31 +50,33 @@ public class Examen {
 
         System.out.println("Lever examen in? (j/n)");
         String jn = scanner.next();
-        if(jn.equals("j")) {
+        if (jn.equals("j")) {
             int correct = 0;
             for (Vraag vraag : vragen) {
                 Antwoord antwoord = vraag.controleer();
                 correct += antwoord.isGoed() ? 1 : 0;
             }
-            cijfer = correct / vragen.size() * 9 + 1;
+            cijfer = correct / (double) vragen.size() * 9 + 1;
         }
 
-        return new Resultaat(student, this, cijfer);
+        Resultaat resultaat = new Resultaat(student, this, cijfer);
+        Resultaat.alleResultaten.add(resultaat);
+        JsonHandler.slaResultatenOp();
+
+        return resultaat;
     }
 
     public String getExamenCode() {
         return examenCode;
     }
 
-    public static Examen getExamenFromCode(String examenCode){
-        for(int i = 0; i < alleExamen.size(); i++) {
-            if(alleExamen.get(i).getExamenCode().equals(examenCode)){
-                return alleExamen.get(i);
-            };
+    public static Examen getExamenFromCode(String examenCode) {
+        for (Examen alleExaman : alleExamen) {
+            if (alleExaman.getExamenCode().equals(examenCode)) {
+                return alleExaman;
+            }
         }
 
         return null;
-    };
+    }
 }
-
-// test
