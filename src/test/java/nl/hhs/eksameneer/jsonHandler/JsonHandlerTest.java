@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 class JsonHandlerTest {
     @Test
-    public void testStudent() {
+    public void slaOp_StudentLogtIn_SlaatStudentObjectOp() {
         // Arrange
         Student testStudent = new Student(1, "Abdallah");
         Student testStudentTwee = new Student(254, "TestNaam");

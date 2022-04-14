@@ -2,15 +2,31 @@
   {
     "studentNummer": 1,
     "naam": "Abdallah",
+    "behaaldeExamens": [
+      {
+        "student": {
+          "studentNummer": 0,
+          "resultaten": []
+        },
+        "cijfer": 10.0
+      }
+    ],
     "resultaten": []
   },
   {
     "studentNummer": 254,
     "naam": "TestNaam",
+    "behaaldeExamens": [],
     "resultaten": []
   },
   {
     "studentNummer": -5,
+    "behaaldeExamens": [],
+    "resultaten": []
+  },
+  {
+    "studentNummer": 3,
+    "naam": "Tim",
     "resultaten": []
   }
 ]

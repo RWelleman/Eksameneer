@@ -49,16 +49,12 @@ public class Examen {
 
         double cijfer = 1;
 
-        System.out.println("Lever examen in? (j/n)");
-        String jn = scanner.next();
-        if (jn.toLowerCase(Locale.ROOT).equals("j")) {
-            int correct = 0;
-            for (Vraag vraag : vragen) {
-                Antwoord antwoord = vraag.controleer();
-                correct += antwoord.isGoed() ? 1 : 0;
-            }
-            cijfer = correct / (double) vragen.size() * 9 + 1;
+        int correct = 0;
+        for (Vraag vraag : vragen) {
+            Antwoord antwoord = vraag.controleer();
+            correct += antwoord.isGoed() ? 1 : 0;
         }
+        cijfer = correct / (double) vragen.size() * 9 + 1;
 
         Resultaat resultaat = new Resultaat(student, this, cijfer);
         Resultaat.alleResultaten.add(resultaat);
@@ -72,9 +68,9 @@ public class Examen {
     }
 
     public static Examen getExamenFromCode(String examenCode) {
-        for (Examen alleExaman : alleExamen) {
-            if (alleExaman.getExamenCode().equals(examenCode)) {
-                return alleExaman;
+        for (Examen examen : alleExamen) {
+            if (examen.getExamenCode().equals(examenCode)) {
+                return examen;
             }
         }
 

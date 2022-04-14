@@ -59,6 +59,7 @@ public class Student {
             System.out.println("Geef je naam: ");
             String naam = scanner.next();
             student = new Student(studentNummer, naam);
+            alleStudenten.add(student);
             JsonHandler.slaStudentenOp();
         }
 

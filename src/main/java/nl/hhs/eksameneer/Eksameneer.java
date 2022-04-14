@@ -31,7 +31,7 @@ public class Eksameneer {
         int keuze;
 
         while (true) {
-            System.out.println("Menu");
+            System.out.println("=== Menu ===");
             System.out.println("(1) Lijst met examens.");
             System.out.println("(2) Lijst met studenten.");
             System.out.println("(3) Nieuwe student inschrijven.");
@@ -66,17 +66,19 @@ public class Eksameneer {
                 case 2 -> showStudents();
                 case 3 -> Student.loginStudent();
                 case 4 -> {
-                    if (Student.isLoggedIn(student)) {
-                        System.out.println("Welk examen wil je afnemen? (getal)");
-                        int selectedExam = scanner.nextInt();
-                        Resultaat resultaat = Examen.alleExamen.get(selectedExam - 1).neemAf(student);
-                        System.out.println(resultaat.getCijfer());
-                    } else {
+                    if (!Student.isLoggedIn(student)) {
                         Student.loginStudent();
-                        System.out.println("Welk examen wil je afnemen? (getal)");
-                        int selectedExam = scanner.nextInt();
-                        Resultaat resultaat = Examen.alleExamen.get(selectedExam - 1).neemAf(student);
-                        System.out.println(resultaat.getCijfer());
+                    }
+
+                    System.out.println("Welk examen wil je afnemen? (getal)");
+                    int selectedExam = scanner.nextInt();
+                    Resultaat resultaat = Examen.alleExamen.get(selectedExam - 1).neemAf(student);
+                    double cijfer = resultaat.getCijfer();
+                    System.out.println("Je cijfer is: " + cijfer);
+                    if(cijfer >= 5.5){
+                        System.out.println("Je hebt een voldoende, gefeliciteerd!!");
+                    }else{
+                        System.out.println("Je hebt een onvoldoende. Veel success met je herkansing.");
                     }
                 }
                 case 5 -> isStudentSuccessful();
@@ -139,6 +141,10 @@ public class Eksameneer {
 
         for (Student student : studenten) {
             if (student.getBehaaldeExamens() == null) continue;
+
+            if(highestScore.getNaam().equals("Niemand")){
+                highestScore = student;
+            }
 
             if (student.getBehaaldeExamens().size() > highestScore.getBehaaldeExamens().size()) {
                 highestScore = student;
