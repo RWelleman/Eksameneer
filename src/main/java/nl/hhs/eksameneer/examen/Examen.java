@@ -8,6 +8,7 @@ import nl.hhs.eksameneer.vraag.Vraag;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Examen {
@@ -50,7 +51,7 @@ public class Examen {
 
         System.out.println("Lever examen in? (j/n)");
         String jn = scanner.next();
-        if (jn.equals("j")) {
+        if (jn.toLowerCase(Locale.ROOT).equals("j")) {
             int correct = 0;
             for (Vraag vraag : vragen) {
                 Antwoord antwoord = vraag.controleer();

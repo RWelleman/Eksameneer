@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class Eksameneer {
 
     // ingelogde student op client
-    static Student student = null;
+    public static Student student = null;
     static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -74,6 +74,7 @@ public class Eksameneer {
                         System.out.println("Welk examen wil je afnemen? (getal)");
                         int selectedExam = scanner.nextInt();
                         Resultaat resultaat = Examen.alleExamen.get(selectedExam - 1).neemAf(student);
+                        System.out.println(resultaat);
                         System.out.println(resultaat.getCijfer());
                     }
                 }
@@ -92,7 +93,8 @@ public class Eksameneer {
     private static void registerExamens() {
         // De vragen moeten aangemaakt worden
         ArrayList<Vraag> vragen = new ArrayList<>();
-        vragen.add(new GeslotenVraag("Werkt dit examen?", "Nee"));
+        vragen.add(new GeslotenVraag("Werkt dit examen?", "Ja"));
+        vragen.add(new GeslotenVraag("Zitten wij in Den Haag?", "Ja"));
         // Examen aangemaakt worden
         new Examen(vragen, "Werkend examen");
     }

@@ -3,6 +3,8 @@ package nl.hhs.eksameneer.vraag;
 import nl.hhs.eksameneer.antwoord.Antwoord;
 import nl.hhs.eksameneer.examen.Examen;
 
+import java.util.Locale;
+
 public abstract class Vraag {
     protected String inhoud;
     protected String correcteAntwoord;
@@ -19,7 +21,7 @@ public abstract class Vraag {
         // Doe daarna antwoord.setIsGoed(x) met x als true/false wanneer het klopt/niet klopt
         // Deze functie kan overwritten worden bij subclasses
         // return this.antwoord
-        boolean goed = this.correcteAntwoord.equals(this.antwoord.getInput());
+        boolean goed = this.correcteAntwoord.toLowerCase(Locale.ROOT).equals(this.antwoord.getInput().toLowerCase(Locale.ROOT));
         this.antwoord.setIsGoed(goed);
 
         return this.antwoord;
