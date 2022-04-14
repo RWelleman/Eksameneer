@@ -1,10 +1,13 @@
 package nl.hhs.eksameneer;
 
+import nl.hhs.eksameneer.antwoord.Antwoord;
 import nl.hhs.eksameneer.examen.Examen;
 import nl.hhs.eksameneer.jsonHandler.JsonHandler;
 import nl.hhs.eksameneer.resultaat.Resultaat;
 import nl.hhs.eksameneer.student.Student;
 import nl.hhs.eksameneer.vraag.GeslotenVraag;
+import nl.hhs.eksameneer.vraag.MeerkeuzeVraag;
+import nl.hhs.eksameneer.vraag.OpenVraag;
 import nl.hhs.eksameneer.vraag.Vraag;
 
 import java.io.IOException;
@@ -34,8 +37,7 @@ public class Eksameneer {
             System.out.println("(3) Nieuwe student inschrijven.");
             System.out.println("(4) Examen afnemen.");
             System.out.println("(5) Is student geslaagd voor test?");
-            System.out.println("(6) Welke examens heeft student gehaald?");
-            System.out.println("(7) Welke student heeft de meeste examens gehaald?");
+            System.out.println("(6) Welke student heeft de meeste examens gehaald?");
             System.out.println("(0) Exit.");
             System.out.print("Uw keuze:");
             keuze = scanner.nextInt();
@@ -74,13 +76,11 @@ public class Eksameneer {
                         System.out.println("Welk examen wil je afnemen? (getal)");
                         int selectedExam = scanner.nextInt();
                         Resultaat resultaat = Examen.alleExamen.get(selectedExam - 1).neemAf(student);
-                        System.out.println(resultaat);
                         System.out.println(resultaat.getCijfer());
                     }
                 }
                 case 5 -> isStudentSuccessful();
-                case 6 -> System.out.println("nummer 7 is gekozen");
-                case 7 -> meestBehaaldeResultaat();
+                case 6 -> meestBehaaldeResultaat();
                 case 0 -> {
                     System.out.println("exit");
                     System.exit(0);
@@ -91,12 +91,21 @@ public class Eksameneer {
     }
 
     private static void registerExamens() {
-        // De vragen moeten aangemaakt worden
+        // ArrayLists van Vragen die bij alle examens
         ArrayList<Vraag> vragen = new ArrayList<>();
-        vragen.add(new GeslotenVraag("Werkt dit examen?", "Ja"));
         vragen.add(new GeslotenVraag("Zitten wij in Den Haag?", "Ja"));
-        // Examen aangemaakt worden
-        new Examen(vragen, "Werkend examen");
+        vragen.add(new GeslotenVraag("Zit de HHS alleen in Den Haag", "Nee"));
+        vragen.add(new OpenVraag("Wat studeer je (geef de afkorting)?", "SE"));
+        vragen.add(new OpenVraag("Noem de 4e grootste stad in Nederland", "Utrecht"));
+
+        ArrayList<Vraag> vragenTwee = new ArrayList<>();
+        vragenTwee.add(new OpenVraag("Stel dat auto 1 door rood rijdt. Hoe hoog is de boete in €", "150"));
+        vragenTwee.add(new OpenVraag("Als er op een weg een maximale snelheid van 100 km/u geldt, hoe snel mag je rijden?", "100"));
+        vragenTwee.add(new GeslotenVraag("Is het slim om ooit de hoogte van je voertuig te meten en te onthouden zodat je niet tegen een brug aankomt", "Ja"));
+
+        // Examens aanmaken met die ArrayLists als parameter
+        new Examen(vragen, "Haagse Hogeschool");
+        new Examen(vragenTwee, "Rijexamen");
     }
 
     private static void showStudents() {
