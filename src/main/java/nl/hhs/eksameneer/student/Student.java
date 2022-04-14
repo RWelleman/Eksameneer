@@ -1,5 +1,6 @@
 package nl.hhs.eksameneer.student;
 
+import nl.hhs.eksameneer.Eksameneer;
 import nl.hhs.eksameneer.jsonHandler.JsonHandler;
 import nl.hhs.eksameneer.resultaat.Resultaat;
 
@@ -58,9 +59,11 @@ public class Student {
             System.out.println("Geef je naam: ");
             String naam = scanner.next();
             student = new Student(studentNummer, naam);
+            alleStudenten.add(student);
             JsonHandler.slaStudentenOp();
         }
 
+        Eksameneer.student = student;
         System.out.println("Ingelogd als " + student.getNaam());
         Student.alleStudenten.add(student);
     }
