@@ -3,38 +3,27 @@
     "student": {
       "studentNummer": 1,
       "naam": "Abdallah",
-      "behaaldeExamens": [
-        {
-          "student": {
-            "studentNummer": 0,
-            "resultaten": []
-          },
-          "cijfer": 10.0
-        }
-      ],
+      "behaaldeExamens": [],
       "resultaten": []
     },
-    "cijfer": 10.0
+    "cijfer": 5.5
   },
   {
     "student": {
-      "studentNummer": 3,
-      "naam": "Tim",
+      "studentNummer": 1,
+      "naam": "Abdallah",
+      "behaaldeExamens": [],
       "resultaten": []
     },
     "examen": {
       "examenCode": "Haagse Hogeschool",
       "vragen": [
         {
-          "antwoorden": [
-            "Ja",
-            "Nee"
-          ],
-          "inhoud": "Zitten wij in Den Haag?",
-          "correcteAntwoord": "Ja",
+          "inhoud": "Wat studeer je (geef de afkorting)?",
+          "correcteAntwoord": "SE",
           "antwoord": {
-            "input": "Ja",
-            "isGoed": true
+            "input": "HBO-ICT",
+            "isGoed": false
           }
         },
         {
@@ -50,48 +39,11 @@
           }
         },
         {
-          "inhoud": "Wat studeer je (geef de afkorting)?",
-          "correcteAntwoord": "SE",
-          "antwoord": {
-            "input": "SE",
-            "isGoed": true
-          }
-        },
-        {
           "inhoud": "Noem de 4e grootste stad in Nederland",
           "correcteAntwoord": "Utrecht",
           "antwoord": {
-            "input": "Utrecht",
-            "isGoed": true
-          }
-        }
-      ]
-    },
-    "cijfer": 10.0
-  },
-  {
-    "student": {
-      "studentNummer": 3,
-      "naam": "Tim",
-      "resultaten": []
-    },
-    "examen": {
-      "examenCode": "Rijexamen",
-      "vragen": [
-        {
-          "inhoud": "Stel dat auto 1 door rood rijdt. Hoe hoog is de boete in €",
-          "correcteAntwoord": "150",
-          "antwoord": {
-            "input": "150",
-            "isGoed": true
-          }
-        },
-        {
-          "inhoud": "Als er op een weg een maximale snelheid van 100 km/u geldt, hoe snel mag je rijden?",
-          "correcteAntwoord": "100",
-          "antwoord": {
-            "input": "100",
-            "isGoed": true
+            "input": "Den",
+            "isGoed": false
           }
         },
         {
@@ -99,15 +51,15 @@
             "Ja",
             "Nee"
           ],
-          "inhoud": "Is het slim om ooit de hoogte van je voertuig te meten en te onthouden zodat je niet tegen een brug aankomt",
+          "inhoud": "Zitten wij in Den Haag?",
           "correcteAntwoord": "Ja",
           "antwoord": {
-            "input": "Ja",
-            "isGoed": true
+            "input": "Haag",
+            "isGoed": false
           }
         }
       ]
     },
-    "cijfer": 10.0
+    "cijfer": 3.25
   }
 ]

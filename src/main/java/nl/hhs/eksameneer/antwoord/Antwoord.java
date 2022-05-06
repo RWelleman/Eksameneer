@@ -19,4 +19,9 @@ public class Antwoord {
     public void setIsGoed(boolean isGoed) {
         this.isGoed = isGoed;
     }
+
+    @Override
+    public String toString() {
+        return input;
+    }
 }

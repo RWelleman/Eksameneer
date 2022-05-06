@@ -1,6 +1,8 @@
 package nl.hhs.eksameneer.examen;
 
+import nl.hhs.eksameneer.Eksameneer;
 import nl.hhs.eksameneer.vraag.GeslotenVraag;
+import nl.hhs.eksameneer.vraag.OpenVraag;
 import nl.hhs.eksameneer.vraag.Vraag;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -42,6 +44,22 @@ public class ExamenTest {
 
         assertEquals(vragen, examen.getVragen());
     }
+    //Rick
+    @Test
+    @DisplayName("examen toegevoegd")
+    void Isexamentoegevoegd_aan_alleexamens(){
+        ArrayList<Vraag> vragen = new ArrayList<>();
+        vragen.add(new OpenVraag("gaat deze test slagen>", "Ja"));
+        vragen.add(new OpenVraag("In een keer?", "Nee niet in een keer"));
+        Examen Toegevoegdeexamen = new Examen(vragen, "Rick");
 
+        ArrayList<Examen> alleExamen = Examen.alleExamen;
+        int last = alleExamen.size();
+
+
+        assertTrue(alleExamen.contains(Toegevoegdeexamen));
+        assertEquals(alleExamen.get(last-1).getExamenCode(), "Rick");
+
+    }
 
 }

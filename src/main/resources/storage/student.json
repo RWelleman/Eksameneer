@@ -5,10 +5,10 @@
     "behaaldeExamens": [
       {
         "student": {
-          "studentNummer": 0,
+          "studentNummer": -1,
           "resultaten": []
         },
-        "cijfer": 10.0
+        "cijfer": 7.0
       }
     ],
     "resultaten": []
@@ -27,6 +27,13 @@
   {
     "studentNummer": 3,
     "naam": "Tim",
+    "behaaldeExamens": [],
+    "resultaten": []
+  },
+  {
+    "studentNummer": 20177348,
+    "naam": "Rick",
+    "behaaldeExamens": [],
     "resultaten": []
   }
-]
+  ]

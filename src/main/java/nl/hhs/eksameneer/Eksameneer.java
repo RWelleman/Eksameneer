@@ -11,6 +11,7 @@ import nl.hhs.eksameneer.vraag.OpenVraag;
 import nl.hhs.eksameneer.vraag.Vraag;
 
 import java.io.IOException;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -38,6 +39,7 @@ public class Eksameneer {
             System.out.println("(4) Examen afnemen.");
             System.out.println("(5) Is student geslaagd voor test?");
             System.out.println("(6) Welke student heeft de meeste examens gehaald?");
+            System.out.println("(7) Voeg nieuw examen toe.");
             System.out.println("(0) Exit.");
             System.out.print("Uw keuze:");
             keuze = scanner.nextInt();
@@ -83,6 +85,7 @@ public class Eksameneer {
                 }
                 case 5 -> isStudentSuccessful();
                 case 6 -> meestBehaaldeResultaat();
+                case 7 -> Examen.newexamen();
                 case 0 -> {
                     System.out.println("exit");
                     System.exit(0);

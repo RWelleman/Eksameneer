@@ -50,4 +50,6 @@ public abstract class Vraag {
     public void setAntwoord(Antwoord antwoord) {
         this.antwoord = antwoord;
     }
+
+
 }
